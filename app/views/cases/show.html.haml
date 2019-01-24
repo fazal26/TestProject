@@ -1,0 +1,7 @@
+%h1 Case Details
+%h2
+  Category: #{@case.category.name}
+%h2= @case.description
+- if user_signed_in? and @case.user_id == current_user.id
+  = link_to "Edit", edit_case_path(@case)
+  = link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"}

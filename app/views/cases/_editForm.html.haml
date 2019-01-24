@@ -1,0 +1,4 @@
+= simple_form_for @case, :html => {:multipart => true } do |f|
+  = f.select :category_id, @categories
+  = f.input :description, label: "Details Regargind Case"
+  = f.button :submit
