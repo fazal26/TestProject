@@ -1,7 +1,25 @@
 %h1 Case Details
-%h2
-  Category: #{@case.category.name}
-%h2= @case.description
-- if user_signed_in? and @case.user_id == current_user.id
+.well
+  %h3 Verifier PReference (Hint) 
+  = @case.verifierPreference
+  %h3 Title:
+  = @case.title 
+  %h3 Status
+  = @case.status 
+  %h3 Category:
+  = @case.category.name
+  %h3 Full Name:
+  = @case.name
+  %h3 Contact: 
+  = @case.contact
+  %h3 Address: 
+  = @case.address
+  %h3 CNIC: 
+  = @case.cnic
+  %h3 Description: 
+  = @case.description
+  -# - if user_signed_in? and @case.user_id == current_user.id
+  %br/
+  %br/
   = link_to "Edit", edit_case_path(@case)
   = link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"}

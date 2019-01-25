@@ -14,7 +14,10 @@ class CasesController < ApplicationController
     def create
         @case = current_user.case.build(case_params)
         @case.category_id = params[:category_id]
+        instances =  Case.where(category_id: params[:category_id]).count
         #@case = Case.new(case_params)
+
+        @case.title = '#{@case.category_id}' + "-" + instances.to_s
         if @case.save
             redirect_to root_path
         else
@@ -23,7 +26,10 @@ class CasesController < ApplicationController
     end
     
     def show
-        
+        puts '************' *100
+        puts params.inspect
+        puts '************'* 100
+        @case = Case.find(params[:id])
     end
 
     def edit
@@ -46,7 +52,7 @@ class CasesController < ApplicationController
 
     private 
     def case_params
-        params.require(:case).permit(:description, :category_id)
+        params.require(:case).permit!(:title, :name, :address, :contact, :cnic, :verifierPreference, :description, :category_id)
     end
 
     def find_case

@@ -5,7 +5,6 @@ ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
-gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form', '~> 4.1'
@@ -17,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'devise', '~> 4.5'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem "haml-rails"
+gem 'pg'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
