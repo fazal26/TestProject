@@ -20,7 +20,6 @@ user = User.new({
     email: "admin@admin.com",
     password: "111111",
     password_confirmation: "111111",
-    role: 0,
-    username: "Admin" 
 })
+user.add_role(:admin)
 user.save!
