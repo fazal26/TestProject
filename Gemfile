@@ -19,6 +19,8 @@ gem "haml-rails"
 gem 'pg'
 gem "pundit"
 gem 'rolify'
+gem "json"
+gem 'awesome_print'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
