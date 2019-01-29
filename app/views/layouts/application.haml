@@ -10,6 +10,8 @@
   %body
     = render 'navbar/nav'
     .container
+      - flash.each do |key, value|
+        %div{class: "alert alert-#{key}"}= value
       %p.notice= notice
       %p.alert= alert
       = yield

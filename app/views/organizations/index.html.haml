@@ -1,1 +1,4 @@
--# - @orgs.each do |i|
+%h1 Companies
+.well
+    - @orgs.each do |i|
+        %h2= link_to i.title, organization_path(i)

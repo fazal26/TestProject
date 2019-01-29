@@ -26,9 +26,6 @@ class CasesController < ApplicationController
     end
     
     def show
-        puts '************' *100
-        puts params.inspect
-        puts '************'* 100
         @case = Case.find(params[:id])
     end
 
