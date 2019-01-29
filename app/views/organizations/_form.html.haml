@@ -1,0 +1,5 @@
+.well
+    = simple_form_for @org,:html => {:multipart => true } do |f|
+        = f.input :title, label: "Company Title"
+        = f.input :admin_email, label: "Company Admin Email"
+        = f.button :submit

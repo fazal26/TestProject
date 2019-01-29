@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
     # end
     def after_sign_in_path_for(resource)
         if current_user.has_role?(:admin)
-          puts "(((((((((((((((((("*100
-         new_case_path
+            new_organization_path
         elsif current_user.has_role?(:user)
          root_path
         else

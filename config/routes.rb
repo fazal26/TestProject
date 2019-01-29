@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   #   :registrations => "users/registrations" }
 
   resources :cases
+  resources :organizations
   root 'cases#index'
 end
