@@ -12,9 +12,11 @@ class OrganizationsController < ApplicationController
     def create
         @org = Organization.new(org_params)
         @user = User.new({email: @org.admin_email, password: '112233'})
+        
         @user.add_role(:admin)
         if @org.save
             flash[:notice] = 'Company Created!'
+            @user.organization_id = @org.id
             if @user.save
                 flash[:notice] = 'Admin Created and Mail Sent!'
                 UserMailer.welcome_email(@org.admin_email).deliver_now
@@ -29,7 +31,8 @@ class OrganizationsController < ApplicationController
     end
     def destroy
         @org.destroy
-        redirect_to root_path
+        session[:return_to] ||= request.referer
+        redirect_to session.delete(:return_to)
     end
 
 

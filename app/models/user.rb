@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :case
   belongs_to :organization
   
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
   def assign_default_role
