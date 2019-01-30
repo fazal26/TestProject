@@ -7,4 +7,4 @@
   %br/
   %br/
   = link_to "Edit", edit_organization_path(@org)
-  = link_to "Delete", organization_path, method: :delete, data: { confirm: "You Sure?"}
+  = link_to "Delete", organization_path(@org), method: :delete, data: { confirm: "You Sure?"}

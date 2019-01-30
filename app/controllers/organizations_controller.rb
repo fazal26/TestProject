@@ -25,14 +25,17 @@ class OrganizationsController < ApplicationController
                 flash[:notice] = 'Error Creating Admin!'
             end
         else
-            flash[:notice] = 'Error Creating Company or Admin!'
+            flash[:notice] = 'Error Creating Company!'
             render 'new'
         end
     end
+    def show
+    end
+
     def destroy
+        User.where(organization_id: @org.id).destroy_all
         @org.destroy
-        session[:return_to] ||= request.referer
-        redirect_to session.delete(:return_to)
+        redirect_to organizations_path
     end
 
 

@@ -12,6 +12,9 @@
         - if user_signed_in? and current_user.has_role?(:super)
           %li= link_to "Manage Users", manage_user_path
           %li= link_to "Manage Companies", manage_organization_path
+        - if user_signed_in? and current_user.has_role?(:admin)
+          %li= link_to "Manage Users", manage_user_path
+          %li= link_to "Manage Cases", manage_case_path
         - if user_signed_in?
           %li= link_to "Sign Out", destroy_user_session_path, method: :delete
         - else

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
         if current_user.has_role?(:super)
             super_panel_index_path
         elsif current_user.has_role?(:admin)
-            root_path
+            admin_panel_index_path
         elsif current_user.has_role?(:user)
             root_path
         end
