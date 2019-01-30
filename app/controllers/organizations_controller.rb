@@ -27,8 +27,6 @@ class OrganizationsController < ApplicationController
             render 'new'
         end
     end
-    def show
-    end
     def destroy
         @org.destroy
         redirect_to root_path

@@ -1,0 +1,2 @@
+module SuperPanelHelper
+end
