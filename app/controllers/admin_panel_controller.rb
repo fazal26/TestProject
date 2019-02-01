@@ -9,9 +9,6 @@ class AdminPanelController < ApplicationController
     end
     def manage_case
     end
-    def invite_user
-        @newUser = User.new
-    end
 
     private 
     def validate_admin

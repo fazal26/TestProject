@@ -1,0 +1,4 @@
+.well
+    = simple_form_for @user do |f|
+        = f.input :email, label: "Email Address"
+        = f.button :submit , users_path
