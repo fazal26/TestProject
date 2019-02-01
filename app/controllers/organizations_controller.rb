@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
     before_action :validate_superAdmin
-    before_action :find_org, only: [:show, :destroy]
+    before_action :find_org, only: [:show, :destroy,:edit,:update]
 
     def index
         @orgs = Organization.all.order("created_at DESC")
@@ -10,23 +10,32 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        @org = Organization.new(org_params)
-        @user = User.new({email: @org.admin_email, password: '112233'})
-        
+        @org = Organization.new()
+        @user = User.new({email: params[:admin_email], password: '112233'})
         @user.add_role(:admin)
-        if @org.save
-            flash[:notice] = 'Company Created!'
-            @user.organization_id = @org.id
-            if @user.save
-                flash[:notice] = 'Admin Created and Mail Sent!'
+        if @user.save
+            flash[:notice] = 'User Created!'
+            @org.title = params[:organization][:title]
+            @org.admin_id = @user.id
+            if @org.save
+                flash[:notice] = 'Organization Created and Mail Sent!'
                 UserMailer.welcome_email(@org.admin_email).deliver_now
                 redirect_to root_path
             else
-                flash[:notice] = 'Error Creating Admin!'
+                flash[:notice] = 'Error Creating Organization!'
             end
         else
-            flash[:notice] = 'Error Creating Company!'
+            flash[:notice] = 'Error Creating Admin!'
             render 'new'
+        end
+    end
+    def edit
+    end
+    def update
+        if @org.update(org_params)
+            redirect_to organization_path(@org)
+        else
+            render 'edit'
         end
     end
     def show
@@ -40,6 +49,7 @@ class OrganizationsController < ApplicationController
 
 
     private 
+
     def org_params
         params.require(:organization).permit!()
     end
@@ -48,14 +58,10 @@ class OrganizationsController < ApplicationController
         @org = Organization.find(params[:id])
     end
 
-
     def validate_superAdmin
-        
         return true if current_user.has_role?(:super)
-        
         redirect_to root_path
         flash[:notice] = 'Get the *uck Outta Here!'
     end
-
 
 end

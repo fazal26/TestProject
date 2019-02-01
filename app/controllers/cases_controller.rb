@@ -16,6 +16,7 @@ class CasesController < ApplicationController
         @case.category_id = params[:category_id]
         instances =  Case.where(category_id: params[:category_id]).count
         #@case = Case.new(case_params)
+        @case.organization_id = current_user.organization_id
 
         @case.title = '#{@case.category_id}' + "-" + instances.to_s
         if @case.save
