@@ -10,24 +10,13 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        @org = Organization.new()
-        @user = User.new({email: params[:admin_email], password: '112233'})
-        @user.add_role(:admin)
-        if @user.save
-            flash[:notice] = 'User Created!'
-            @org.title = params[:organization][:title]
-            @org.admin_id = @user.id
-            if @org.save
-                flash[:notice] = 'Organization Created and Mail Sent!'
-                UserMailer.welcome_email(@org.admin_email).deliver_now
-                redirect_to root_path
-            else
-                flash[:notice] = 'Error Creating Organization!'
-            end
+        if OrganizationCreator.new(params).perform
+            flash[:notice] = 'Organization Created!' 
         else
-            flash[:notice] = 'Error Creating Admin!'
+            flash[:notice] = 'Error Creating Organization!'
             render 'new'
         end
+
     end
 
     def edit; end
@@ -65,4 +54,5 @@ class OrganizationsController < ApplicationController
         flash[:notice] = 'Get the *uck Outta Here!'
     end
 
+   
 end
