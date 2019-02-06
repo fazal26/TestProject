@@ -8,7 +8,7 @@ class CasesController < ApplicationController
     def new
         @case = current_user.case.build
         #@case = Case.new
-        @categories = Category.all.map { |c| [c.name,c.id] }
+        @categories = Category.pluck(:name, :id)
     end
 
     def create

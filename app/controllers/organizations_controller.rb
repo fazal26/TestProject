@@ -29,8 +29,9 @@ class OrganizationsController < ApplicationController
             render 'new'
         end
     end
-    def edit
-    end
+
+    def edit; end
+    
     def update
         if @org.update(org_params)
             redirect_to organization_path(@org)
@@ -38,8 +39,8 @@ class OrganizationsController < ApplicationController
             render 'edit'
         end
     end
-    def show
-    end
+
+    def show; end
 
     def destroy
         User.where(organization_id: @org.id).destroy_all

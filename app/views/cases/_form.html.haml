@@ -1,6 +1,6 @@
 .well
-    = simple_form_for @case,:html => {:multipart => true } do |f|
-        = select_tag(:category_id, options_for_select(@categories), :prompt => "Select a Category")
+    = simple_form_for @case, html: { multipart: true } do |f|
+        = f.select :category, @categories, include_blank: true, prompt: "Select category" #select_tag(:category_id, options_for_select(@categories), prompt: "Select a Category")
         = f.input :verifierPreference, label: "Verifier Preference"
         = f.input :name, label: "Person Name"
         = f.input :contact, label: "Contact"
