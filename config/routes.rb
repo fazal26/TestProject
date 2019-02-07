@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   get '/manage_organization', to: "super_panel#manage_organization"
   get '/manage_case', to: "admin_panel#manage_case"
 
-  devise_for :users, :skip => [:registrations] , controllers: {
-    sessions: 'users/sessions'
-  }
+  # devise_for :users, :skip => [:registrations] , controllers: {
+  #   sessions: 'users/sessions'
+  # }
 
-
+  devise_for :users, :controllers => { :invitations => 'users/invitations' }
 
 
   # devise_for :users, controllers: {

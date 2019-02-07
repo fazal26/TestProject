@@ -1,5 +1,6 @@
 .well
-    = simple_form_for @org do |f|
-        = f.input :title, label: "Company Title"
-        = text_field_tag 'admin_email'
+    = form_for @org do |f|
+        = f.text_field :title, label: "Company Title"
+        = f.fields_for :users do |u|
+            = u.text_field :email, label: "Admin Email"
         = f.button :submit
