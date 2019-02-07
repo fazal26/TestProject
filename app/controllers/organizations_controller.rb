@@ -11,16 +11,16 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        org_params[:organization][:users_attributes]['0'][:password] = "112233"
-        @org = Organization.new(org_params)
+        OrganizationCreator.new(org_params).perform
+        redirect_to organizations_path
+        # @org = Organization.new(org_params)
 
-        if @org.save
-            flash[:notice] = 'Organization Created!'
-            redirect_to  organizations_path
-        else
-            flash[:error] = @org.errors.full_messages.join(', ')
-            render 'new'
-        end
+        #     flash[:notice] = 'Organization Created!'
+        #     redirect_to  organizations_path
+        # else
+        #     flash[:notice] = '@org.errors.full_messages'
+        #     render 'new'
+        # end
 
     end
 
@@ -55,7 +55,9 @@ class OrganizationsController < ApplicationController
     private 
 
     def org_params
-        params.require(:organization).permit(:title, users_attributes:[:email])
+        # generated_password = Devise.friendly_token.first(8)
+        params[:organization][:users_attributes]["0"][:password]= '112233'
+        params.require(:organization).permit(:title, users_attributes:[:email, :password])
     end
     def find_org
         @org = Organization.find(params[:id])

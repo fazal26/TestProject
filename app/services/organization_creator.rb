@@ -1,18 +1,21 @@
 class OrganizationCreator
-    # def initialize(params)
-    #     puts '*******'*20
-    #     puts params.inspect
+    def initialize(params)
+        puts '***org creator SERVICE****'*20
+        puts params.inspect
+        @params = params
         
-    # end
+    end
 
-    # def perform
-    #     ActiveRecord::Base.transaction do
-    #         org = Organization.create!()
-    #         user = User.create!({email: @admin_email, password: '112233', organization_id: org.id})
-    #         user.add_role :admin, @org
-    #         user.save!
-    #         org.admin_id = user.id
-    #         org.save!
-    #     end
-    # end
+    def perform
+        ActiveRecord::Base.transaction do
+            org = Organization.create!(@params)
+            org.update!({admin_id: org.users.first.id})
+
+            user = User.find(org.admin_id)
+            user.invite!()
+            user.add_role :admin, org
+            user.save!
+
+        end
+    end
 end
