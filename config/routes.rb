@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #   sessions: 'users/sessions'
   # }
 
-  devise_for :users, :controllers => { :invitations => 'users/invitations' }
+  devise_for :users, :controllers => { invitations: 'users/invitations' }
 
 
   # devise_for :users, controllers: {
