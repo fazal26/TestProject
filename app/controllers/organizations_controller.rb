@@ -11,8 +11,6 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        puts '&&&&&&&&&&&&&&&&&&&' * 10
-        puts params.inspect
         org_params[:organization][:users_attributes]['0'][:password] = "112233"
         @org = Organization.new(org_params)
 
@@ -29,11 +27,6 @@ class OrganizationsController < ApplicationController
     def edit; end
     
     def update
-        puts "*****************"*20
-        puts org_params
-        puts @org.persisted?
-        puts @org.inspect
-
         @org.title = org_params[:title]
         @admin.email = org_params[:admin_email]
         if @org.update(org_params.except(:admin_email))
