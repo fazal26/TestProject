@@ -1,13 +1,13 @@
 class CasesController < ApplicationController
-    before_action :find_case, only:[:show, :edit, :update,:destroy]
+    before_action :find_case, only:[:show, :edit, :update, :destroy]
+    before_action :get_organization, only:[:index, :show, :update, :destroy]
 
     def index
-        @cases = Case.all.order("created_at DESC")
+        @cases = Case.all.order("created_at DESC").where({organization_id: @org.id})
     end
 
     def new
         @case = current_user.case.build
-        #@case = Case.new
         @categories = Category.pluck(:name, :id)
     end
 
@@ -15,8 +15,7 @@ class CasesController < ApplicationController
         @case = current_user.case.build(case_params)
         @case.category_id = params[:category_id]
         instances =  Case.where(category_id: params[:category_id]).count
-        #@case = Case.new(case_params)
-        @case.organization_id = current_user.organization_id
+        @case.organization_id = @org.id
 
         @case.title = '#{@case.category_id}' + "-" + instances.to_s
         if @case.save
@@ -57,5 +56,8 @@ class CasesController < ApplicationController
         @case = Case.find(params[:id])
     end
 
+    def get_organization
+        @org = Organization.with_role(:user, current_user).first
+    end
 
 end

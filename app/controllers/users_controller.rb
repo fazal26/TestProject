@@ -1,18 +1,36 @@
 class UsersController < ApplicationController
+    before_action :get_user, only:[:destroy, :show]
 
     def new
      @user = User.new
     end
 
     def create
-        @user = User.new()
-        @user.email = params[:user][:email]
-        @user.password = "111111"
-        @user.organization_id = current_user.organization_id
-        @user.save!()
+        # generated_password = Devise.friendly_token.first(8)
+
+        @user = User.create!({email: user_params[:email], password: '111111'})
+        # @user.invite!()
+        @user.add_role :user, Organization.with_role(:admin, current_user).first
+        @user.save!
+        flash[:notice] = 'User Added!'
         
     end
 
+    def destroy
+        # puts "||||||||||||||||||||\n"*10
+        # puts params.inspect
+        @user.destroy
+        redirect_to root_path
+    end
+
+    private 
+    def user_params
+        params.require(:user).permit(:email)
+    end
+
+    def get_user
+        @user = User.find(params[:id])
+    end
 
 
 end

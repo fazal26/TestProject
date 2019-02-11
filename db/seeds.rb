@@ -10,6 +10,11 @@ Role.create!([
     {name: "admin"},
     {name: "user"}
 ])
+Category.create!([
+    {name: "Zakat"},
+    {name: "Khairat"},
+    {name: "Sadqa"}
+])
 
 user = User.new({
     email: "admin@admin.com",
