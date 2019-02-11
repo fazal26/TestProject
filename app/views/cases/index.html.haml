@@ -1,11 +1,7 @@
-- @cases.each do |i|
-    - if i.user_id == current_user.id
-        %h2= link_to i.description, case_path(i)
-= link_to "Add Case", new_case_path
+%h1= link_to "Add Case", new_case_path
+.well
+    - @cases.each do |i|
+        - if i.user_id == current_user.id
+            %h2= link_to i.title, case_path(i)
+
  
--# .well
--#     %h2 All Users
--#     - @users.each do |i|
--#         %h2= link_to i.email, user_path(i)
--#         %button Edit
--#         %button= link_to "Delete",  user_path(i), method: :delete, data: { confirm: "You Sure?"}

@@ -1,6 +1,6 @@
 class AdminPanelController < ApplicationController
     before_action :validate_admin
-    before_action :get_organization, only:[:index, :manage_user]
+    before_action :get_organization, only:[:index, :manage_user, :manage_case]
     def index
         
     end
@@ -10,7 +10,11 @@ class AdminPanelController < ApplicationController
         @users = User.with_role(:user, @org)
     end
 
-    def manage_case; end
+    def manage_case
+        @cases = Case.where({organization_id: @org.id})
+        puts "******\n"*20
+        puts @cases.inspect
+    end
 
 
     private 
