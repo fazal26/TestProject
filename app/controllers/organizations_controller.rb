@@ -7,7 +7,7 @@ class OrganizationsController < ApplicationController
     end
     def new
         @org = Organization.new
-        @org.users.build
+        # @org.users.build
     end
 
     def create
@@ -41,27 +41,31 @@ class OrganizationsController < ApplicationController
         end
     end
 
-    def show
-
-    end
+    def show; end
 
     def destroy
-        User.where(organization_id: @org.id).destroy_all
+        User.with_role(:admin, @org).destroy_all
+        User.with_role(:user, @org).destroy_all
         @org.destroy
         redirect_to organizations_path
     end
 
 
     private 
-
     def org_params
         # generated_password = Devise.friendly_token.first(8)
-        params[:organization][:users_attributes]["0"][:password]= '112233'
-        params.require(:organization).permit(:title, users_attributes:[:email, :password])
+
+       
+        params[:organization][:password]= '112233'
+        params.require(:organization).permit(:title, :email, :password)
     end
+
     def find_org
         @org = Organization.find(params[:id])
-        @admin = User.find(@org.admin_id)
+        # @admin = User.find(@org.admin_id)
+        @admin = User.with_role(:admin ,@org)
+        puts"***********\n"*10
+        puts @admin.inspect
     end
 
     def validate_superAdmin
@@ -69,6 +73,4 @@ class OrganizationsController < ApplicationController
         redirect_to root_path
         flash[:notice] = 'Get the *uck Outta Here!'
     end
-
-   
 end

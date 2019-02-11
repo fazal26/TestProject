@@ -3,7 +3,7 @@
   %h3 Company Title 
   = @org.title
   %h3 Company Admin:
-  = @admin.email 
+  = @admin[0].email 
   %br/
   %br/
   = link_to "Edit", edit_organization_path(@org)

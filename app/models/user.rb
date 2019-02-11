@@ -1,14 +1,18 @@
 class User < ApplicationRecord
-  resourcify
-  rolify 
-  
-  
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  rolify
+
+  has_many :users_roles
+  has_many :roles, through: :users_roles
+
   has_many :case
-  belongs_to :organization, required: false
+  has_many :organizations, through: :roles, class_name: 'Organization', source: :resource, source_type: 'Organization'
+
   
   devise :invitable, :database_authenticatable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable  
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
 
 end

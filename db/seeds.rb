@@ -10,10 +10,12 @@ Role.create!([
     {name: "admin"},
     {name: "user"}
 ])
+
 user = User.new({
     email: "admin@admin.com",
     password: "111111",
     password_confirmation: "111111",
 })
+
 user.add_role(:super)
 user.save!

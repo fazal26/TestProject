@@ -1,6 +1,5 @@
 .well
     = form_for @org do |f|
         = f.text_field :title, label: 'Company Title', placeholder: "Company Title"
-        = f.fields_for :users do |u|
-            = u.text_field :email, label: "Admin Email", placeholder: "Admin's Email"
+        = text_field_tag 'organization[email]'
         = f.button :submit
