@@ -7,21 +7,11 @@ class OrganizationsController < ApplicationController
     end
     def new
         @org = Organization.new
-        # @org.users.build
     end
 
     def create
         OrganizationCreator.new(org_params).perform
         redirect_to organizations_path
-        # @org = Organization.new(org_params)
-
-        #     flash[:notice] = 'Organization Created!'
-        #     redirect_to  organizations_path
-        # else
-        #     flash[:notice] = '@org.errors.full_messages'
-        #     render 'new'
-        # end
-
     end
 
     def edit; end
@@ -54,18 +44,13 @@ class OrganizationsController < ApplicationController
     private 
     def org_params
         # generated_password = Devise.friendly_token.first(8)
-
-       
         params[:organization][:password]= '112233'
         params.require(:organization).permit(:title, :email, :password)
     end
 
     def find_org
         @org = Organization.find(params[:id])
-        # @admin = User.find(@org.admin_id)
         @admin = User.with_role(:admin ,@org)
-        puts"***********\n"*10
-        puts @admin.inspect
     end
 
     def validate_superAdmin

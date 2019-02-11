@@ -1,0 +1,12 @@
+.row
+  .col-8
+    .form-group
+      %label{for: "usr"} Name:
+      %input#usr.form-control{:type => "text"}/
+    .form-group
+      %label{for: "pwd"} Password:
+      %input#pwd.form-control{:type => "password"}/
+  .col-4
+    %label "Profile Image"
+    = image_tag "user.png"
+
