@@ -18,7 +18,9 @@
   = @case.cnic
   %h3 Description: 
   = @case.description
+  %h3 Attachments: 
+  %button= link_to 'Download Files', @case.files.first, download: ""
   %br/
   %br/
-  = link_to "Edit", edit_case_path(@case)
-  = link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"}
+  %button= link_to "Edit", edit_case_path(@case)
+  %button= link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"}

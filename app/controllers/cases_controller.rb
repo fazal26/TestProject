@@ -13,6 +13,8 @@ class CasesController < ApplicationController
 
     def create
         @case = current_user.case.build(case_params)
+        puts "**************\n"*19
+        puts case_params.inspect
         @case.category_id = params[:case][:category_id]
         instances =  Case.where(category_id: params[:case][:category_id]).count + 1
         @case.organization_id = @org.id
@@ -47,7 +49,7 @@ class CasesController < ApplicationController
 
     private 
     def case_params
-        params.require(:case).permit(:name, :address, :contact, :cnic, :verifierPreference, :description, :category_id)
+        params.require(:case).permit(:name, :address, :contact, :cnic, :verifierPreference, :description, :category_id, :files)
     end
 
     def find_case

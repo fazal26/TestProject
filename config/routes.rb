@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :admin_panel
   resources :users
 
-  root 'users#index'
+  root 'cases#index'
 end
