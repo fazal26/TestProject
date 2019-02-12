@@ -1,8 +1,0 @@
-%h2= link_to "Add Case" , new_case_path
-.well
-    %h2 All Cases
-    - @cases.each do |i|
-        %h2= link_to i.title, case_path(i)
-        - if i.status == "proposed"
-            %button Edit 
-            %button= link_to "Delete",  case_path(i), method: :delete, data: { confirm: "You Sure?"}

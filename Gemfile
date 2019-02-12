@@ -22,6 +22,10 @@ gem 'rolify'
 gem "json"
 gem 'awesome_print'
 gem 'devise_invitable'
+gem 'ajax-datatables-rails'
+gem 'jquery-rails'
+gem 'jquery-datatables'
+
 
 
 # Reduces boot times through caching; required in config/boot.rb

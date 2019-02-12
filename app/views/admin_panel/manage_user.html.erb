@@ -1,0 +1,33 @@
+<%# -# .well
+-#     = simple_form_for @user do |f|
+-#         = f.input :email, label: "Email Address"
+-#         = f.button :submit
+-# .well
+-#     %h2 All Users
+-#     - @users.each do |i|
+-#         %h2= link_to i.email, user_path(i)
+-#         %button Edit
+-#         %button= link_to "Delete",  user_path(i), method: :delete, data: { confirm: "You Sure?"} %>
+<div class="well">
+<h3 style= "text-align:center">All Users</h3>
+    <table id="userTable" class="table table-hover">
+      <thead>
+        <tr>
+          <th> Username</th>    
+          <th> Email</th>
+          <th> Joining Date</th>
+          <th> Actions</th>              
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |u| %>
+          <tr>
+            <td><%= u.username %></td>
+            <td><%= u.email%></td>
+            <td><%= u.created_at%></td>
+            <td><button><%= link_to "Show", user_path(u)%></button> <button><%= link_to "Delete", user_path(u), method: :delete, data: { confirm: "You Sure?"}%></button></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
