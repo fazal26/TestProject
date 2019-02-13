@@ -1,7 +1,7 @@
 <div>
   <%= form_for @comment, remote: true do |f| %>
     <%= f.hidden_field :case_id, value: case_id %>
-    <%= f.text_field :body, placeholder: "Comment...!"%>
+    <%= f.text_field :body, placeholder: "Comment...!", id: "comment_body"%>
     <%= f.submit "Send"%>
   <% end %>
 </div>
