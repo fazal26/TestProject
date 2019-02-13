@@ -1,19 +1,19 @@
 class CommentsController < ApplicationController
-  def new
-    @comment = Comment.new
-  end
+
+  def new; end
+  
   def create
-    puts "***************\n"*99
-    puts comment_params.inspect
-    puts params.inspect
-    @comment = Comment.new(comment_params)
-    @comment.user = current_user
-    @comment.save
+    @case = Case.find(comment_params[:case_id])
+    @comment = @case.comments.create(comment_params)
+    @comment.user_id = current_user.id
+    @comment.save!
+
+    render :create, layout: false
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :case_id)
   end
 end
 

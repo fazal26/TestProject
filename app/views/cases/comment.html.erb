@@ -1,18 +1,8 @@
-<div class="jumbotron">
-  <h2><%=@case.title%></h2>
-  <p>Desc. : <%= @case.description%></p>
-  <p><%= @case.name%>, <%= @case.address%>, <%= @case.contact%> </p>
-</div>
-<h3 style="text-align: center">Chat Box</h3>
-<div id="commentBox" class="well" style="height:250px ; border: solid 1px #000000; overflow-y: scroll">
-  <% @comments.each do |comment|%>
-    <% render 'comments/comment' , message:message%>
-  <% end %>
-  
+
+<div>
+  <%= render partial: 'comments/all_comment' %>
+
 </div>
 <div>
-<%= form_with model: @comment do |f| %>
-    <%= f.text_field :body, placeholder: "Comment...!"%>
-    <%= f.submit "Send"%>
-  <% end %>
+  <%= render partial: 'comments/new_comment', locals:{ case_id: @case.id } %>
 </div>

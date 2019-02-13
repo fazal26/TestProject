@@ -25,15 +25,13 @@ class CasesController < ApplicationController
         end
     end
     
-    def show
-        puts "**********\n"*18
-        puts @case.files.inspect
-    end
+    def show; end
 
     def edit; end
 
     def comment
         @comments = @case.comments
+        @comment = Comment.new
     end
 
     def update

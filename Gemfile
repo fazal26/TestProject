@@ -25,6 +25,9 @@ gem 'devise_invitable'
 gem 'ajax-datatables-rails'
 gem 'jquery-rails'
 gem 'jquery-datatables'
+gem 'popper_js'
+gem 'tether-rails'
+
 
 
 
