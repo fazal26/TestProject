@@ -19,7 +19,9 @@
   %h3 Description: 
   = @case.description
   %h3 Attachments: 
-  %button= link_to 'Download Files', @case.files.first, download: ""
+  %ol
+    - @case.files.each do |file|
+      %li= link_to file.filename, file, download: ""
   %br/
   %br/
   %button= link_to "Edit", edit_case_path(@case)

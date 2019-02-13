@@ -21,7 +21,11 @@
           <td><%=c.title%></td>
           <td><%=c.status%></td>
           <td><%=c.created_at%></td>
-          <td><button><%= link_to "Show", case_path(c)%></button> <button><%= link_to "Edit", edit_case_path(c)%></button> <button><%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button></td>          
+          <td><button><%= link_to "Show", case_path(c)%></button> <button><%= link_to "Edit", edit_case_path(c)%></button> 
+              <button><%= link_to "Disapprove", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button> 
+              <button><%= link_to "Comment", yabloi_path(c)%></button>
+              <button><%= %></button>
+          </td>          
         </tr>
       <% end %>
     </tbody>

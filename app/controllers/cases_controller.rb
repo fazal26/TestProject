@@ -1,5 +1,5 @@
 class CasesController < ApplicationController
-    before_action :find_case, only:[:show, :edit, :update, :destroy]
+    before_action :find_case, only:[:show, :edit, :update, :destroy, :comment]
     before_action :get_organization, only:[:index, :create, :show, :update, :destroy]
     before_action :get_categories, only:[:new, :create, :edit]
 
@@ -13,8 +13,6 @@ class CasesController < ApplicationController
 
     def create
         @case = current_user.case.build(case_params)
-        puts "**************\n"*19
-        puts case_params.inspect
         @case.category_id = params[:case][:category_id]
         instances =  Case.where(category_id: params[:case][:category_id]).count + 1
         @case.organization_id = @org.id
@@ -28,10 +26,15 @@ class CasesController < ApplicationController
     end
     
     def show
-        @case = Case.find(params[:id])
+        puts "**********\n"*18
+        puts @case.files.inspect
     end
 
     def edit; end
+
+    def comment
+        @comments = @case.comments
+    end
 
     def update
         @case.category_id = params[:case][:category_id]
@@ -49,7 +52,7 @@ class CasesController < ApplicationController
 
     private 
     def case_params
-        params.require(:case).permit(:name, :address, :contact, :cnic, :verifierPreference, :description, :category_id, :files)
+        params.require(:case).permit(:name, :address, :contact, :cnic, :verifierPreference, :description, :category_id, files:[])
     end
 
     def find_case
