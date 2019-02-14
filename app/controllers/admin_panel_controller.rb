@@ -13,6 +13,12 @@ class AdminPanelController < ApplicationController
         @cases = Case.where({organization_id: @org.id})
     end
 
+    def change_status(case_id,status)
+        # cas = Case.find(case_id)
+        # cas.status = status
+        # cas.save!
+    end
+
 
     private 
     def validate_admin

@@ -4,8 +4,11 @@
 
 = require rails-ujs
 
+<%= link_to "Update", case_path(c), method: :put %> 
 
 
+
+<button><%= link_to "Disapprove", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button> 
 
 
 <div class = "row">

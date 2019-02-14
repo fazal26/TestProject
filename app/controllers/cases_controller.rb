@@ -8,11 +8,11 @@ class CasesController < ApplicationController
     end
 
     def new
-        @case = current_user.case.build
+        @case = current_user.cases.build
     end
 
     def create
-        @case = current_user.case.build(case_params)
+        @case = current_user.cases.build(case_params)
         @case.category_id = params[:case][:category_id]
         instances =  Case.where(category_id: params[:case][:category_id]).count + 1
         @case.organization_id = @org.id
@@ -35,12 +35,9 @@ class CasesController < ApplicationController
     end
 
     def update
-        @case.category_id = params[:case][:category_id]
-        if @case.update(case_params)
-            redirect_to case_path(@case)
-        else
-            render 'edit'
-        end
+        @case = Case.find(status_params[:id])
+        @case.status = Case.statuses[status_params[:status]]
+        @case.save!
     end
 
     def destroy
@@ -51,6 +48,10 @@ class CasesController < ApplicationController
     private 
     def case_params
         params.require(:case).permit(:name, :address, :contact, :cnic, :verifierPreference, :description, :category_id, files:[])
+    end
+
+    def status_params
+        params.permit(:status, :id)
     end
 
     def find_case

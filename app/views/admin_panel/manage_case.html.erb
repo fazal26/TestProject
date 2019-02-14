@@ -11,7 +11,8 @@
         <th>Title</th>    
         <th>Status</th>
         <th>Submission Date</th>  
-        <th>Actions</th>            
+        <th>Actions</th>   
+        <th>Change Status</th>            
       </tr>
     </thead>
     <tbody>
@@ -19,16 +20,19 @@
         <tr>
           <td><%=i+1%></td>
           <td><%=c.title%></td>
-          <td><%=c.status%></td>
+          <td><%=c.status.capitalize%></td>
           <td><%=c.created_at%></td>
           <td><button><%= link_to "Show", case_path(c)%></button> <button><%= link_to "Edit", edit_case_path(c)%></button> 
-              <button><%= link_to "Disapprove", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button> 
               <button><%= link_to "Comment", yabloi_path(c)%></button>
-              <button><%= %></button>
           </td>          
+          <td>
+          <%= form_tag(case_path(c), method: "put") do %>
+            <%= select_tag "status", options_for_select(Case.statuses.map {|k, _| [k.humanize.capitalize, k]}) %> 
+            <%= submit_tag "Update" %>
+          <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-    
