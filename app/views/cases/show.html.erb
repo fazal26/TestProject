@@ -1,0 +1,59 @@
+<h1>Case Details</h1>
+<div style="text-align:center">
+  <button><%= link_to "Add Verification", add_verification_path%></button>
+</div>
+<div class="well">
+  <h3>Verifier Preference (Hint) </h3>
+  <%= @case.verifierPreference %>
+  <h3>Title:</h3>
+  <%= @case.title  %>
+  <h3>Status</h3>
+  <%= @case.status  %>
+  <h3>Category:</h3>
+  <%= @case.category.name %>
+  <h3>Full Name:</h3>
+  <%= @case.name %>
+  <h3>Contact: </h3>
+  <%= @case.contact %>
+  <h3>Address: </h3>
+  <%= @case.address %>
+  <h3>CNIC: </h3>
+  <%= @case.cnic %>
+  <h3>Description: </h3>
+  <%= @case.description %>
+  <h3>Attachments: </h3>
+  <ol>
+    <% @case.files.each do |file| %>
+      <li>
+        <%= link_to file.filename, file, download: "" %>
+      </li>
+    <% end %>
+  </ol>
+  <br/>
+  <br/>
+  <h3>Verifications</h3>
+  <div class="well">
+  <% @case.verifications.each_with_index do |v,index| %>
+  <span><%= index+1%> : </span>
+  <span>Verifier: <%= v.user.email %></span>
+  <p>Created At: <%= v.created_at %></p>
+  <p>Remarks: <%= v.remarks %></p>
+  <p>Attachments:</p>
+  <ol>
+    <% v.files.each do |f| %>
+      <li>
+        <%= link_to f.filename, f, download: "" %>
+      </li>
+    <% end %>
+  </ol>
+  <% end %>
+  </div>
+  <br/>
+  <br/>
+  <button>
+    <%= link_to "Edit", edit_case_path(@case) %>
+  </button>
+  <button>
+    <%= link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"} %>
+  </button>
+</div>

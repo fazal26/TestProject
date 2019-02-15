@@ -6,4 +6,5 @@ class Case < ApplicationRecord
     belongs_to :category
     has_many_attached :files
     has_many :comments
+    has_many :verifications
 end

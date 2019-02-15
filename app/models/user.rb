@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :cases
   has_many :organizations, through: :roles, class_name: 'Organization', source: :resource, source_type: 'Organization'
-
+  has_many :verifications
   
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :validatable  

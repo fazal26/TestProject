@@ -1,5 +1,5 @@
 class CasesController < ApplicationController
-    before_action :find_case, only:[:show, :edit, :update, :destroy, :comment]
+    before_action :find_case, only:[:show, :edit, :update, :destroy, :comment, :verification]
     before_action :get_organization, only:[:index, :create, :show, :update, :destroy]
     before_action :get_categories, only:[:new, :create, :edit]
 
@@ -32,6 +32,11 @@ class CasesController < ApplicationController
     def comment
         @comments = @case.comments
         @comment = Comment.new
+    end
+
+    def verification
+        @verifications = @case.verifications
+        @verification  = Verification.new
     end
 
     def update

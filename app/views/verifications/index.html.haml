@@ -1,0 +1,25 @@
+%h1 Listing verifications
+
+%table
+  %thead
+    %tr
+      %th Check1
+      %th Check2
+      %th Remarks
+      %th
+      %th
+      %th
+
+  %tbody
+    - @verifications.each do |verification|
+      %tr
+        %td= verification.check1
+        %td= verification.check2
+        %td= verification.remarks
+        %td= link_to 'Show', verification
+        %td= link_to 'Edit', edit_verification_path(verification)
+        %td= link_to 'Destroy', verification, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Verification', new_verification_path

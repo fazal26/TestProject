@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :verifications
   get '/manage_user', to: "admin_panel#manage_user"
   get '/manage_organization', to: "super_panel#manage_organization"
   get '/manage_case', to: "admin_panel#manage_case"
-  get '/case/:id/comment', to: "cases#comment", as: "yabloi"
+  get '/case/:id/comment', to: "cases#comment", as: "add_comment"
+  get '/case/:id/verification', to: "cases#verification", as: "add_verification"
   devise_for :users, :controllers => { invitations: 'users/invitations' }
 
   resources :cases

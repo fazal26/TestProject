@@ -23,7 +23,7 @@
           <td><%=c.status.capitalize%></td>
           <td><%=c.created_at%></td>
           <td><button><%= link_to "Show", case_path(c)%></button> <button><%= link_to "Edit", edit_case_path(c)%></button> 
-              <button><%= link_to "Comment", yabloi_path(c)%></button>
+              <button><%= link_to "Comment", add_comment_path(c)%></button>
           </td>          
           <td>
           <%= form_tag(case_path(c), method: "put") do %>
