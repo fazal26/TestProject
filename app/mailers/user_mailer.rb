@@ -31,7 +31,7 @@ class UserMailer < ApplicationMailer
         @verifier = User.find(verifier_id)
         @case = Case.find(case_id)
         @url  = 'http://localhost:3000/'
-        mail(to: email, subject: 'Comment Notification')
+        mail(to: email, subject: 'Verification Notice')
     end
 
     def accept_invitation

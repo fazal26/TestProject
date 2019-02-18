@@ -1,6 +1,9 @@
-<h1>Case Details</h1>
+<h1 style = "text-align:center">Case Details</h1>
 <div style="text-align:center">
-  <button><%= link_to "Add Verification", add_verification_path%></button>
+  <% if @case.user_id != current_user.id%>
+  <button> <%= link_to "Add Verification", add_verification_path%></button>
+  <br>
+  <% end %>
 </div>
 <div class="well">
   <h3>Verifier Preference (Hint) </h3>
@@ -22,6 +25,9 @@
   <h3>Description: </h3>
   <%= @case.description %>
   <h3>Attachments: </h3>
+  <% if @case.files.empty? %>
+    <p>No Attachments Available.</p>
+  <% end %>
   <ol>
     <% @case.files.each do |file| %>
       <li>
@@ -29,10 +35,11 @@
       </li>
     <% end %>
   </ol>
-  <br/>
-  <br/>
-  <h3>Verifications</h3>
+  <h3>Verifications:</h3>
   <div class="well">
+  <% if @case.verifications.empty? %>
+    <p>No Verifications Available.</p>
+  <% end %>
   <% @case.verifications.each_with_index do |v,index| %>
   <span><%= index+1%> : </span>
   <span>Verifier: <%= v.user.email %></span>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :verifications
-  get '/manage_user', to: "super_panel#manage_user"
+  get '/manage_user', to: "admin_panel#manage_user"
   get '/manage_case', to: "admin_panel#manage_case"
   get '/case/:id/comment', to: "cases#comment", as: "add_comment"
   get '/case/:id/verification', to: "cases#verification", as: "add_verification"

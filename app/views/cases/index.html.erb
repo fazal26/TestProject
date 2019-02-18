@@ -1,0 +1,27 @@
+<div class="well">
+  <h3 style="text-align:center">All Cases</h3>
+  <table id="caseTable" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Title</th>    
+        <th>Status</th>
+        <th>Submission Date</th>  
+        <th>Actions</th>           
+      </tr>
+    </thead>
+    <tbody>
+      <% @cases.each_with_index do |c,i| %>
+        <tr>
+          <td><%=i+1%></td>
+          <td><%=c.title%></td>
+          <td><%=c.status.capitalize%></td>
+          <td><%=c.created_at%></td>
+          <td><button><%= link_to "Show", case_path(c)%></button> <button><%= link_to "Edit", edit_case_path(c)%></button> 
+              <button><%= link_to "Comment", add_comment_path(c)%></button>
+          </td>      
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

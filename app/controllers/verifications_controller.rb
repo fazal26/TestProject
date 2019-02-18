@@ -31,7 +31,22 @@ class VerificationsController < ApplicationController
     
     respond_to do |format|
       if @verification.save
-        UserMailer.verification_notification_email(owner.email, @verification.user_id, @case.id).deliver_now
+        verifier_ids = Array.new
+        verifiers = Array.new
+        org = Organization.find(@case.organization_id)
+        admin = User.with_role(:admin, org).first
+        verifier_ids.push(@case.user_id)
+        verifier_ids.push(admin.id)
+        for i in @case.verifications
+          verifier_ids.push(i.user_id)
+        end
+        for i in verifier_ids
+          verifiers.push(User.find(i).email)
+        end
+        for i in verifiers
+          UserMailer.verification_notification_email(i, @verification.user_id, @case.id).deliver_now
+        end
+      
         format.html { redirect_to @verification, notice: 'Verification was successfully created.' }
         format.json { render :show, status: :created, location: @verification }
       else

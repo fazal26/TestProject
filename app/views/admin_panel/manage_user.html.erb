@@ -1,5 +1,14 @@
 <div class="well">
-<h3 style= "text-align:center">All Users</h3>
+  <h3 style= "text-align:center">Add User</h3>
+  <%= simple_form_for @user do |f| %>
+  <%= f.input :email, placeholder: "user@organization.com" %>
+  <%= f.button :submit %>
+  <% end %>
+</div>
+
+<br>
+<div class="well">
+
     <table id="userTable" class="table table-hover">
       <thead>
         <tr>
@@ -21,3 +30,5 @@
       </tbody>
     </table>
 </div>
+
+
