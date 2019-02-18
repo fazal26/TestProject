@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :get_comment, only:[:destroy]
+
   def new; end
   
   def create
@@ -13,9 +15,18 @@ class CommentsController < ApplicationController
     render :create, layout: false
   end
 
+  def destroy
+    @comment.destroy!
+    redirect_back(fallback_location: root_path)
+  end
+
   private
   def comment_params
-    params.require(:comment).permit(:body, :case_id)
+    params.require(:comment).permit(:body, :case_id, :id)
+  end
+
+  def get_comment
+    @comment = Comment.find(params[:id])
   end
 end
 

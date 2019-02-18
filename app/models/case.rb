@@ -5,7 +5,7 @@ class Case < ApplicationRecord
     belongs_to :user
     belongs_to :organization
     belongs_to :category
-    has_many_attached :files
-    has_many :comments
-    has_many :verifications
+    has_many_attached :files,  dependent: :destroy
+    has_many :comments,  dependent: :destroy
+    has_many :verifications,  dependent: :destroy
 end

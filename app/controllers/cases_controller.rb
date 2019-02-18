@@ -47,8 +47,8 @@ class CasesController < ApplicationController
     end
 
     def destroy
-        @case.destroy
-        redirect_to root_path   #route back
+        @case.destroy!
+        # redirect_to root_path   #route back
     end 
 
     private 

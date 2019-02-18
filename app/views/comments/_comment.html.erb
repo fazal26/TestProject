@@ -1,3 +1,4 @@
 <div class="well">
-    [<%= comment.created_at%>]: <%= comment.user.email%> ** <%= comment.body%>
+    <%= comment.user.email.split('@')[0]%>: <%= comment.body%> <%= link_to 'X', comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} , style: "float:right"%>
+    <p><%= comment.created_at.strftime("%B %e, %Y at %I:%M %p")%></p>
 </div>
