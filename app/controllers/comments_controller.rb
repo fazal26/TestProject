@@ -7,6 +7,8 @@ class CommentsController < ApplicationController
     @comment = @case.comments.create(comment_params)
     @comment.user_id = current_user.id
     @comment.save!
+    owner = User.find(@case.user_id)
+    UserMailer.comment_notification_email(owner.email, @comment.user_id, @case.id).deliver_now
 
     render :create, layout: false
   end

@@ -17,8 +17,9 @@ class CasesController < ApplicationController
         instances =  Case.where(category_id: params[:case][:category_id]).count + 1
         @case.organization_id = @org.id
         @case.title = Category.find(params[:case][:category_id]).name + "-" + instances.to_s
-
+        admin = User.with_role(:admin, @org).first
         if @case.save
+            UserMailer.case_add_email(admin.email, current_user.id, @case.id).deliver_now
             redirect_to root_path
         else
             render 'new'
@@ -68,7 +69,7 @@ class CasesController < ApplicationController
     end
 
     def get_categories
-    @categories = Category.pluck(:name, :id)
+        @categories = Category.pluck(:name, :id)
     end
 
 end

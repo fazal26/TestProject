@@ -31,6 +31,7 @@ class VerificationsController < ApplicationController
     
     respond_to do |format|
       if @verification.save
+        UserMailer.verification_notification_email(owner.email, @verification.user_id, @case.id).deliver_now
         format.html { redirect_to @verification, notice: 'Verification was successfully created.' }
         format.json { render :show, status: :created, location: @verification }
       else
