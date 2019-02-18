@@ -1,0 +1,13 @@
+<h1 style = "text-align:center"><%= @org.title %></h1>
+<div class="well">
+  <h3>Admin Email: <%= @admin[0].email  %></h3>
+  <h3>Total Cases: <%= @org.cases.count %></h3>
+  <h3>Total Users: <%= @org.users.count %></h3>
+
+  <br/>
+  <br/>
+  <button><%= link_to "Edit", edit_organization_path(@org) %></button>
+  <button><%= link_to "Delete", organization_path(@org), method: :delete, data: { confirm: "You Sure?"} %></button>
+
+  
+</div>

@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
     before_action :validate_superAdmin
-    before_action :find_org, only: [:show, :destroy,:edit,:update]
+    before_action :find_org, only: [:show, :destroy, :edit, :update]
 
     def index
         @orgs = Organization.all.order("created_at DESC")
@@ -17,17 +17,9 @@ class OrganizationsController < ApplicationController
     def edit; end
     
     def update
-        @org.title = org_params[:title]
-        @admin.email = org_params[:admin_email]
-        if @org.update(org_params.except(:admin_email))
-            if @admin.update
-                flash[:notice] = 'Organization Update!'
-                redirect_to organization_path(@org)
-            else
-                flash[:notice] = 'Error Updating Organization!'
-            end
-        else
-            render 'edit'
+        @org.update!(org_params.except(:email, :password))
+        if org_params[:email].present?
+            @org.update_admin(@admin.first.id, org_params[:email])
         end
     end
 
@@ -58,4 +50,5 @@ class OrganizationsController < ApplicationController
         redirect_to root_path
         flash[:notice] = 'Get the *uck Outta Here!'
     end
+
 end

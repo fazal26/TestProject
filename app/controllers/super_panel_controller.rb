@@ -8,10 +8,6 @@ class SuperPanelController < ApplicationController
 
   def manage_user; end
 
-  def manage_organization
-    @orgs = Organization.all.order("created_at DESC")
-  end
-
   private 
   def validate_super
     return true if current_user.has_role?(:super)

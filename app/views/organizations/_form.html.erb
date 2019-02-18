@@ -1,0 +1,11 @@
+<div class="well">
+  <%= form_for @org do |f| %>
+    <label>Organization Title:</label>
+    <%= f.text_field :title%>
+    <br>
+    <label>Admin Email:</label>
+    <%= text_field_tag 'organization[email]' %>
+    <br>
+    <%= f.submit "Save" %>
+  <% end %>
+</div>

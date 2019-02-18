@@ -26,3 +26,16 @@
             <!-- <%= image_tag "user.png" %> -->
     </div>    
 </div>
+
+
+
+<div class="well">
+    <h3>Organizations:</h3>
+    <% if Organization.all.count == 0 %>
+        <p>No Organizations Available.</p>
+    <% else %>
+        <% @orgs.each.with_index do |o,i| %>
+            <h3><%= i+1 %>- <%= link_to o.title, organization_path(o) %></h3>
+        <% end %>
+    <% end %>
+</div>
