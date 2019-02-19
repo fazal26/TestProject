@@ -6,7 +6,6 @@ class VerificationsController < ApplicationController
   end
 
   def show
-
     @comments = @verification.comments
     @comment = Comment.new
   

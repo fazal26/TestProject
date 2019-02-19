@@ -13,12 +13,9 @@
   <b>Remarks:</b>
   <%= @verification.remarks %>
 </p>
-
-
 <div>
-  <%= render partial: 'comments/all_verification_comment' %>
-
+  <%= render partial: 'verification_comment' %>
 </div>
 <%= link_to 'Edit', edit_verification_path(@verification) %>
-\|
+
 <%= link_to 'Back', verifications_path %>

@@ -1,9 +1,11 @@
 <h1 style = "text-align:center">Case Details</h1>
 <div style="text-align:center">
-  <% if @case.user_id != current_user.id%>
-  <button> <%= link_to "Add Verification", add_verification_path%></button>
+  <% if @case.user_id != current_user.id%> 
+  <%# Put the Button Inside %>
   <br>
   <% end %>
+
+  <button> <%= link_to "Add Verification", add_verification_path%></button>
 </div>
 <div class="well">
   <h3>Verifier Preference (Hint) </h3>

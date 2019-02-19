@@ -1,0 +1,7 @@
+<div>
+  <%= form_for @comment, remote: true do |f| %>
+    <%= f.hidden_field :verification_id, value: verification_id %>
+    <%= f.text_field :body, placeholder: "Say something new!", id: "comment_body", style:"width:50vw"%>
+    <%= f.submit "Send"%>
+  <% end %>
+</div>
