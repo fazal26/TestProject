@@ -1,28 +1,23 @@
 class VerificationsController < ApplicationController
   before_action :set_verification, only: [:show, :edit, :update, :destroy]
 
-  # GET /verifications
-  # GET /verifications.json
   def index
     @verifications = Verification.all
   end
 
-  # GET /verifications/1
-  # GET /verifications/1.json
   def show
+
+    @comments = @verification.comments
+    @comment = Comment.new
+  
   end
 
-  # GET /verifications/new
   def new
     @verification = Verification.new
   end
 
-  # GET /verifications/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /verifications
-  # POST /verifications.json
   def create
     @case = Case.find(verification_params[:case_id].to_i)
     @verification = @case.verifications.create(verification_params)
@@ -56,8 +51,6 @@ class VerificationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /verifications/1
-  # PATCH/PUT /verifications/1.json
   def update
     respond_to do |format|
       if @verification.update(verification_params)
@@ -70,8 +63,6 @@ class VerificationsController < ApplicationController
     end
   end
 
-  # DELETE /verifications/1
-  # DELETE /verifications/1.json
   def destroy
     @verification.destroy
     respond_to do |format|
@@ -81,14 +72,11 @@ class VerificationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_verification
       @verification = Verification.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def verification_params
-
       params.require(:verification).permit(:check1, :check2, :remarks, :case_id, files:[])
     end
 end

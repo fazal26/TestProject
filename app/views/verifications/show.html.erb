@@ -1,0 +1,24 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<p>
+  <b>Check1:</b>
+  <%= @verification.check1 %>
+</p>
+<p>
+  <b>Check2:</b>
+  <%= @verification.check2 %>
+</p>
+<p>
+  <b>Remarks:</b>
+  <%= @verification.remarks %>
+</p>
+
+
+<div>
+  <%= render partial: 'comments/all_verification_comment' %>
+
+</div>
+<%= link_to 'Edit', edit_verification_path(@verification) %>
+\|
+<%= link_to 'Back', verifications_path %>

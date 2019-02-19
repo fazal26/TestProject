@@ -23,7 +23,7 @@
         <tr>
           <td><%=i+1%></td>
           <td><%=o.title%></td>
-          <td><%= User.with_role(:admin, o).first.email%></td>
+          <td><%  puts "#{o.inspect}.................." %><%= User.with_role(:admin, o).first.email%></td>
           <td><%=o.users.count%></td>   <%# this is to be replaced with cases after association of cases and organizations%>
           <td><%=o.users.count%></td>
           <td><%=o.created_at%></td>

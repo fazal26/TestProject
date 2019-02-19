@@ -9,7 +9,6 @@ class CommentBroadcastJob < ApplicationJob
 
   private 
   def render_comment(c)
-    puts "****************\n"*99
     CommentsController.render(
       partial: 'comments/comment',
       locals: {
