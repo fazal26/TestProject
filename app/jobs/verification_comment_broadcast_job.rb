@@ -8,12 +8,12 @@ class VerificationCommentBroadcastJob < ApplicationJob
   end
 
   private 
-  def render_comment(comment){
-    CommentController.render(
+  def render_comment(c)
+    VerificationsController.render(
       partial: 'comments/comment',
       locals: {
-        comment: comment
+        comment: c
       }
     )
-  }
+    end
 end

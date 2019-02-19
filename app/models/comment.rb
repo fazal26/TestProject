@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
 
   after_create_commit {
-    CommentBroadcastJob.perform_later(self)
+    CommentBroadcastJob.perform_later(self);
     VerificationCommentBroadcastJob.perform_later(self)
   }
 end
