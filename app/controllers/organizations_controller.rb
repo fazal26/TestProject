@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-    before_action :validate_superAdmin
+    before_action :validate_superAdmin, except:[:show]
     before_action :find_org, only: [:show, :destroy, :edit, :update]
 
     def index
@@ -36,7 +36,7 @@ class OrganizationsController < ApplicationController
     private 
     def org_params
         # generated_password = Devise.friendly_token.first(8)
-        params[:organization][:password]= '112233'
+        params[:organization][:password]= '111111'
         params.require(:organization).permit(:title, :email, :password)
     end
 

@@ -15,6 +15,6 @@ class Organization < ApplicationRecord
         admin = User.find(admin_id)
         generated_password = 777777
         admin.reset_password(generated_password, generated_password)
-        UserMailer.admin_update_email(email, generated_password).deliver_now     
+        # UserMailer.admin_update_email(email, generated_password).deliver_now     
     end
 end

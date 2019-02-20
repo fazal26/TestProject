@@ -10,9 +10,10 @@ class UsersController < ApplicationController
     def create
         # generated_password = Devise.friendly_token.first(8)
         @user = User.create!({email: user_params[:email], password: '111111'})
-        @user.invite!()
+        # @user.invite!()
         @user.add_role :user, Organization.with_role(:admin, current_user).first
         @user.save!
+        redirect_back(fallback_location: root_path)
     end
 
     def destroy

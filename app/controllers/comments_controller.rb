@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       @comment.save!
 
       owner = User.find(@verification.user_id)
-      UserMailer.verification_notification_email(owner.email, @comment.user_id, @case.id).deliver_now
+      # UserMailer.verification_notification_email(owner.email, @comment.user_id, @case.id).deliver_now
 
     else
       @case = Case.find(comment_params[:case_id])
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
       @comment.user_id = current_user.id
       @comment.save!
       owner = User.find(@case.user_id)
-      UserMailer.comment_notification_email(owner.email, @comment.user_id, @case.id).deliver_now
+      # UserMailer.comment_notification_email(owner.email, @comment.user_id, @case.id).deliver_now
 
     end
 

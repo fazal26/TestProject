@@ -2,11 +2,11 @@
 <div style="text-align:center">
   <% if @case.user_id != current_user.id%> 
   <%# Put the Button Inside %>
-  <br>
   <% end %>
-
   <button> <%= link_to "Add Verification", add_verification_path%></button>
 </div>
+  <br/>
+
 <div class="well">
   <h3>Verifier Preference (Hint) </h3>
   <%= @case.verifierPreference %>
@@ -59,10 +59,12 @@
   </div>
   <br/>
   <br/>
+  <% if current_user.id == @case.id%>
   <button>
     <%= link_to "Edit", edit_case_path(@case) %>
   </button>
   <button>
     <%= link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"} %>
   </button>
+  <% end %>
 </div>

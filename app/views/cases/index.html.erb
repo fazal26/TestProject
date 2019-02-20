@@ -1,3 +1,8 @@
+<h2 style ="text-align:center">Welcome to Winterfell!</h2>
+<div style="text-align:center">
+  <button><%= link_to "Add Case", new_case_path%></button>
+</div>
+<br>
 <div class="well">
   <h3 style="text-align:center">All Cases</h3>
   <table id="caseTable" class="table table-hover">
@@ -17,8 +22,8 @@
           <td><%=c.title%></td>
           <td><%=c.status.capitalize%></td>
           <td><%=c.created_at%></td>
-          <td><button><%= link_to "Show", case_path(c)%></button> <button><%= link_to "Edit", edit_case_path(c)%></button> 
-              <button><%= link_to "Comment", add_comment_path(c)%></button>
+          <td><button><%= link_to "Show", case_path(c)%></button> <% if current_user.id == c.user_id %> <button><%= link_to "Edit", edit_case_path(c)%></button> <button><%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button> <% end %>
+              <button><%= link_to "Comment", add_comment_path(c)%></button> 
           </td>      
         </tr>
       <% end %>

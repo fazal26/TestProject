@@ -38,7 +38,7 @@ class VerificationsController < ApplicationController
           verifiers.push(User.find(i).email)
         end
         for i in verifiers
-          UserMailer.verification_notification_email(i, @verification.user_id, @case.id).deliver_now
+          # UserMailer.verification_notification_email(i, @verification.user_id, @case.id).deliver_now
         end
       
         format.html { redirect_to @verification, notice: 'Verification was successfully created.' }

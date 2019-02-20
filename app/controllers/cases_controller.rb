@@ -19,7 +19,7 @@ class CasesController < ApplicationController
         @case.title = Category.find(params[:case][:category_id]).name + "-" + instances.to_s
         admin = User.with_role(:admin, @org).first
         if @case.save
-            UserMailer.case_add_email(admin.email, current_user.id, @case.id).deliver_now
+            # UserMailer.case_add_email(admin.email, current_user.id, @case.id).deliver_now
             redirect_to root_path
         else
             render 'new'
@@ -48,7 +48,7 @@ class CasesController < ApplicationController
 
     def destroy
         @case.destroy!
-        # redirect_to root_path   #route back
+        redirect_to root_path   #route back
     end 
 
     private 
