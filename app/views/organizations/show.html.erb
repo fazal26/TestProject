@@ -2,6 +2,9 @@
 <div class="well">
   <h3>Admin Email: <%= @admin[0].email  %></h3>
   <h3>Total Cases: <%= @org.cases.count %></h3>
+  <h3>Pending Cases: <%= @org.cases.where({status: "proposed"}).count %></h3>
+  <h3>Verified Cases: <%= @org.cases.where(status: "verified").count %></h3>
+  <h3>Closed Cases: <%= @org.cases.where(status: "closed").count %></h3>
   <h3>Total Users: <%= @org.users.count %></h3>
 
   <br/>

@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   resources :users
   resources :home
 
-  root 'cases#index'
+  root 'cases#temp'
 end

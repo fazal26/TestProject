@@ -26,9 +26,11 @@
               <button><%= link_to "Comment", add_comment_path(c)%></button><button><%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button>
           </td>          
           <td>
+          <% if c.verifications.length != 0 %>
           <%= form_tag(case_path(c), method: "put") do %>
             <%= select_tag "status", options_for_select(Case.statuses.map {|k, _| [k.humanize.capitalize, k]}) %> 
             <%= submit_tag "Update" %>
+          <% end %>
           <% end %>
           </td>
         </tr>

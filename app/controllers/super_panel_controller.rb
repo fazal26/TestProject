@@ -3,11 +3,10 @@ class SuperPanelController < ApplicationController
   before_action :get_users, only:[:index, :manage_user]
   
   def index
-    
+    authorize self
   end
 
-  def manage_user;
-  end
+  def manage_user; end
 
   private 
   def validate_super

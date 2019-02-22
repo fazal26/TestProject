@@ -2,23 +2,21 @@ class AdminPanelController < ApplicationController
     before_action :validate_admin
     before_action :get_organization, only:[:index, :manage_user, :manage_case]
     
-    def index; end
+    def index
+        authorize self
+    end
 
     def manage_user
+        @options = ["User","Verifier"]
         @user = User.new
-        @users = User.with_role(:user, @org)
+        users = User.with_role(:user, @org)
+        verifiers = User.with_role(:verifier, @org)
+        @users = users + verifiers
     end
 
     def manage_case
         @cases = Case.where({organization_id: @org.id})
     end
-
-    def change_status(case_id,status)
-        # cas = Case.find(case_id)
-        # cas.status = status
-        # cas.save!
-    end
-
 
     private 
     def validate_admin

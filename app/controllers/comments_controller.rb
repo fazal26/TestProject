@@ -2,9 +2,13 @@ class CommentsController < ApplicationController
 
   before_action :get_comment, only:[:destroy]
 
-  def new; end
+  def new
+    authorize Comment
+  
+  end
   
   def create
+    authorize Comment
     if !comment_params[:verification_id].nil?
       @verification = Verification.find(comment_params[:verification_id])
       @case = @verification.case

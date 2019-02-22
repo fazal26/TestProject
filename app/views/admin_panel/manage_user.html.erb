@@ -3,7 +3,9 @@
   <%= simple_form_for @user do |f| %>
   <%= f.input :email, placeholder: "user@organization.com" %>
   <%= f.input :username, placeholder: "Jon Doe" %>
-  <%= radio_button_tag 'user[role]' ,label: "user" %>
+  <%= label_tag "Role: " %>
+  <br>
+  <%= radio_button_tag 'user[role]', "user" %>
   <%= label_tag("User") %>
   <%= radio_button_tag 'user[role]',"verifier"%>
   <%= label_tag( "Verifier") %>
@@ -17,19 +19,30 @@
     <table id="userTable" class="table table-hover">
       <thead>
         <tr>
+          <th> Index</th>              
           <th> Username</th>    
           <th> Email</th>
+          <th> Role</th>
           <th> Joining Date</th>
-          <th> Actions</th>              
+          <th> Actions</th> 
+          <th> Change Role</th>   
         </tr>
       </thead>
       <tbody>
-        <% @users.each do |u| %>
+        <% @users.each_with_index do |u,i| %>
           <tr>
+          <td><%= i+1 %></td>
             <td><%= u.username %></td>
             <td><%= u.email%></td>
+            <td><%= u.roles.first.name.capitalize%></td>
             <td><%= u.created_at%></td>
             <td><button><%= link_to "Show", user_path(u)%></button> <button><%= link_to "Delete", user_path(u), method: :delete, data: { confirm: "You Sure?"}%></button></td>
+            <td>
+            <%= form_tag(user_path(u), method: "put") do %>
+            <%= select_tag "role", options_for_select(@options) %> 
+            <%= submit_tag "Update" %>
+          <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

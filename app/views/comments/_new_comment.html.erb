@@ -1,7 +1,7 @@
 <div>
   <%= form_for @comment, remote: true do |f| %>
     <%= f.hidden_field :case_id, value: case_id %>
-    <%= f.text_field :body, placeholder: "Comment...!", id: "comment_body", style:"width:50vw"%>
-    <%= f.submit "Send"%>
+    <%= f.text_field :body, placeholder: "#{current_user.email}:", id: "comment_body", style:"width:-webkit-fill-available"%>
+    <%= f.submit "Comment"%>
   <% end %>
 </div>

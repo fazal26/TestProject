@@ -48,7 +48,7 @@ class OrganizationsController < ApplicationController
     def validate_superAdmin
         return true if current_user.has_role?(:super)
         redirect_to root_path
-        flash[:notice] = 'Get the *uck Outta Here!'
+        flash[:alert] = "You are not authorized to perform this action."
     end
 
 end

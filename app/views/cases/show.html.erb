@@ -1,9 +1,8 @@
 <h1 style = "text-align:center">Case Details</h1>
 <div style="text-align:center">
-  <% if @case.user_id != current_user.id%> 
-  <%# Put the Button Inside %>
-  <% end %>
+  <% if @case.user_id != current_user.id && current_user.has_role?(:verifier, Organization.find(@case.organization_id))%> 
   <button> <%= link_to "Add Verification", add_verification_path%></button>
+  <% end %>
 </div>
   <br/>
 
@@ -43,28 +42,14 @@
     <p>No Verifications Available.</p>
   <% end %>
   <% @case.verifications.each_with_index do |v,index| %>
-  <span><%= index+1 %> : </span>
-  <%= link_to "Created At:", verification_path(v)%><p> <%= v.created_at.strftime("%Y-%m-%d") %></p>
+  <span><%= index+1 %>-</span>
   <span>Verifier: <%= v.user.email %></span>
-  <p>Remarks: <%= v.remarks %></p>
-  <p>Attachments:</p>
-  <ol>
-    <% v.files.each do |f| %>
-      <li>
-        <%= link_to f.filename, f, download: "" %>
-      </li>
-    <% end %>
-  </ol>
+  <br>
+  <span>Created At: <%= v.created_at.strftime("%Y-%m-%d") %></span>
+  <br>
+  <Button><%= link_to "Open", verification_path(v)%></Button>
   <% end %>
   </div>
   <br/>
   <br/>
-  <% if current_user.id == @case.id%>
-  <button>
-    <%= link_to "Edit", edit_case_path(@case) %>
-  </button>
-  <button>
-    <%= link_to "Delete",  case_path, method: :delete, data: { confirm: "You Sure?"} %>
-  </button>
-  <% end %>
 </div>

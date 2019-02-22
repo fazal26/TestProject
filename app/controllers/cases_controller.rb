@@ -5,10 +5,12 @@ class CasesController < ApplicationController
 
     def index
         @cases = Case.all.order("created_at DESC").where({organization_id: @org.id})
+        authorize @cases
     end
 
     def new
         @case = current_user.cases.build
+        authorize @case
     end
 
     def create
@@ -65,7 +67,7 @@ class CasesController < ApplicationController
     end
 
     def get_organization
-        @org = Organization.with_roles([:admin, :user], current_user).first
+        @org = Organization.with_roles([:admin, :user, :verifier], current_user).first
     end
 
     def get_categories
