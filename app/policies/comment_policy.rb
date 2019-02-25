@@ -16,6 +16,7 @@ class CommentPolicy < ApplicationPolicy
     
     private
     def is_admin_or_verifier
-        user.has_role?(:super) || user.has_role?(:user, Organization.with_role(:user, current_user))
+        user.has_role?(:super) 
+        # || user.has_role?(:user, Organization.with_role(:user, user))
     end
 end

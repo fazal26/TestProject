@@ -1,10 +1,17 @@
 <% if @user.id == current_user.id%>
-<div style="text-align:center">
-  <button><%= link_to "Edit Profile", edit_user_path(@user)%></button>
-</div>
+  <div style="text-align:center">
+    <button><%= link_to "Edit Profile", edit_user_path(@user)%></button>
+  </div>
 <% end %>
-<h3>Username: <%= @user.username%></h3>
-<h3>Email : <%= @user.email%></h3>
-<%= image_tag(user_profile(@user) , style: "width:20vw")%>
-
-
+<br>
+<div class = "well">
+  <div class = "row">
+    <div class = "col-sm-7">
+      <h5>Username: <%= @user.username%></h5>
+      <h5>Email: <%= @user.email%></h5>
+    </div>
+    <div class = "col-sm-5">
+      <%= image_tag(user_profile(@user) , style: "width:20vw")%>
+    </div>
+  </div>
+</div>

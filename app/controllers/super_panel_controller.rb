@@ -6,8 +6,6 @@ class SuperPanelController < ApplicationController
     authorize self
   end
 
-  def manage_user; end
-
   private 
   def validate_super
     return true if current_user.has_role?(:super)

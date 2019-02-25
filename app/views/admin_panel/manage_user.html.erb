@@ -1,21 +1,9 @@
-<div class="well">
-  <h3 style= "text-align:center">Add User</h3>
-  <%= simple_form_for @user do |f| %>
-  <%= f.input :email, placeholder: "user@organization.com" %>
-  <%= f.input :username, placeholder: "Jon Doe" %>
-  <%= label_tag "Role: " %>
-  <br>
-  <%= radio_button_tag 'user[role]', "user" %>
-  <%= label_tag("User") %>
-  <%= radio_button_tag 'user[role]',"verifier"%>
-  <%= label_tag( "Verifier") %>
-  <%= f.button :submit %>
-  <% end %>
-</div>
-
+<% if is_admin %>
+  <%= render 'add_user'%>
+<% end %>
 <br>
 <div class="well">
-
+  <h2 style = "text-align:center">All Users</h2>
     <table id="userTable" class="table table-hover">
       <thead>
         <tr>

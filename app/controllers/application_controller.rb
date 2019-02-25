@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
 
 
     def after_sign_in_path_for(resource)
-        if current_user.has_role?(:super)
+        if is_super
             super_panel_index_path
-        elsif isAdmin
+        elsif is_admin
             admin_panel_index_path
-        elsif isUser
+        elsif is_user
             root_path
         end
     end

@@ -1,6 +1,6 @@
 <h1 style = "text-align:center">Case Details</h1>
 <div style="text-align:center">
-  <% if @case.user_id != current_user.id && current_user.has_role?(:verifier, Organization.find(@case.organization_id))%> 
+  <% if @case.user_id != current_user.id && (current_user.has_role?(:verifier, Organization.find(@case.organization_id)) || current_user.has_role?(:admin, Organization.find(@case.organization_id)))%> 
   <button> <%= link_to "Add Verification", add_verification_path%></button>
   <% end %>
 </div>

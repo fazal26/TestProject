@@ -8,17 +8,23 @@ class Organization < ApplicationRecord
     # after_update :update_admin
 
 
-    def update_admin(admin_id, email)
+    def update_admin(admin_id, email, org)
         
-        # Change Admin Roles
         # generated_password = Devise.friendly_token.first(8)
         admin = User.find(admin_id)
-        org = Organization.with_role(:admin,admin)
-        admin.remove_role(:admin, Organization.with_role(:admin,admin))
+        admin.remove_role(:admin, org)
         admin.add_role(:user, org)
         new_admin = User.where({email: email})
-        new_admin.remove_role(:user, org)
+        if new_admin.empty?
+            new_admin = User.create({email:email, password: '111111'})
+            # new_admin.invite!()
+        else
+            new_admin = new_admin.first
+            new_admin.remove_role(:user, org)
+        end
         new_admin.add_role(:admin, org)
+        admin.save!
+        new_admin.save!
         # UserMailer.admin_update_email(email, generated_password).deliver_now     
     end
 end

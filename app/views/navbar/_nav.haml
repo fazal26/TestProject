@@ -10,9 +10,8 @@
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in? and current_user.has_role?(:super)
-          %li= link_to "Manage Users", manage_user_path
           %li= link_to "Manage Organizations", organizations_path
-        - if user_signed_in? and isAdmin
+        - if user_signed_in? and is_admin
           %li= link_to "Manage Users", manage_user_path
           %li= link_to "Manage Cases", manage_case_path
         - if user_signed_in?

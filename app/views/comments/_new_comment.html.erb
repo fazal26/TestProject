@@ -1,7 +1,18 @@
 <div>
   <%= form_for @comment, remote: true do |f| %>
     <%= f.hidden_field :case_id, value: case_id %>
-    <%= f.text_field :body, placeholder: "#{current_user.email}:", id: "comment_body", style:"width:-webkit-fill-available"%>
-    <%= f.submit "Comment"%>
+    <div class = "row" style = "background: #96989b; border-radius:5px;padding: 5px" >
+      <div class = "col-sm-1" style="margin-right: 1vw;">
+        <%= image_tag(user_profile(current_user) , style: "width:3vw; border-radius:50px")%>
+      </div>
+      <div class = "col-sm-9">
+        <%= f.text_field :body, id: "comment_body", style:"width:-webkit-fill-available; border:none; height: 3vw"%>
+      </div>
+      <div class = "col-sm-1" style = "margin-top:0.5vw">
+        <%= f.submit "Comment"%>
+      </div>
+    </div>
+    <br>
   <% end %>
 </div>
+ <%# placeholder: "#{current_user.email}:", %>

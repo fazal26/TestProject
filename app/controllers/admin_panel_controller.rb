@@ -9,9 +9,10 @@ class AdminPanelController < ApplicationController
     def manage_user
         @options = ["User","Verifier"]
         @user = User.new
-        users = User.with_role(:user, @org)
+        admin = User.with_role(:admin , @org)
+        simple = User.with_role(:user, @org)
         verifiers = User.with_role(:verifier, @org)
-        @users = users + verifiers
+        @users = simple + verifiers + admin
     end
 
     def manage_case

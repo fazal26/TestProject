@@ -27,8 +27,6 @@ class UsersController < ApplicationController
     end
 
     def update
-        puts "OOOOOOOOOOOOO\n"*99
-        puts params.inspect
         @user.update!(edit_user_params)
         # role = role_params[:role].downcase
         # if role == "verifier"
@@ -39,11 +37,12 @@ class UsersController < ApplicationController
         #     @user.add_role(:user, @org)
         # end
         @user.save!
+        redirect_to user_path(@user)
     end
 
     def destroy
         @user.destroy
-        redirect_to root_path
+        redirect_to manage_user_path
     end
 
     private 
@@ -52,7 +51,7 @@ class UsersController < ApplicationController
     end
 
     def edit_user_params
-        params.require(:user).permit(:username, :password, :image)
+        params.require(:user).permit(:username, :image)
     end
 
     def role_params

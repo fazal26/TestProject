@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :organizations, through: :roles, class_name: 'Organization', source: :resource, source_type: 'Organization'
   has_many :verifications
   has_one_attached :image
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   
   devise :invitable, :database_authenticatable,

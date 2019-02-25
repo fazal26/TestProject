@@ -1,6 +1,6 @@
 <h1 style = "text-align:center"><%= @org.title %></h1>
 <div class="well">
-  <h3>Admin Email: <%= @admin[0].email  %></h3>
+  <h3>Admin Email: <%= @admin.email  %></h3>
   <h3>Total Cases: <%= @org.cases.count %></h3>
   <h3>Pending Cases: <%= @org.cases.where({status: "proposed"}).count %></h3>
   <h3>Verified Cases: <%= @org.cases.where(status: "verified").count %></h3>
@@ -14,3 +14,4 @@
 
   
 </div>
+<%= render 'cases/table'%>

@@ -6,8 +6,7 @@ class UserMailer < ApplicationMailer
         mail(to: email, subject: 'Welcome!')
     end
 
-    def admin_update_email(email,new_password)
-        @password = new_password
+    def admin_update_email(email)
         @email = email
         @url  = 'http://localhost:3000/'
         mail(to: email, subject: 'Admin Update')

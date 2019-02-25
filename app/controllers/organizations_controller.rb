@@ -19,11 +19,14 @@ class OrganizationsController < ApplicationController
     def update
         @org.update!(org_params.except(:email, :password))
         if org_params[:email].present?
-            @org.update_admin(@admin.first.id, org_params[:email])
+            @org.update_admin(@admin.id, org_params[:email], @org)
         end
+        redirect_to organization_path(@org)
+
     end
 
     def show
+        @cases = @org.cases
         authorize @org
     end
 
@@ -44,7 +47,7 @@ class OrganizationsController < ApplicationController
 
     def find_org
         @org = Organization.find(params[:id])
-        @admin = User.with_role(:admin ,@org)
+        @admin = User.with_role(:admin ,@org).first
     end
 
     def validate_superAdmin

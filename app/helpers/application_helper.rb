@@ -1,13 +1,21 @@
 module ApplicationHelper
-    def isAdmin
+    def is_admin
         if current_user.has_role? :admin, Organization.with_role(:admin, current_user).first
-            return true
+            true
         else
-            return false
+            false
+        end
+    end
+
+    def is_super
+        if current_user.has_role? :super
+            true
+        else
+            false
         end
     end
     
-    def isUser
+    def is_user
         # if current_user.has_roles?([:user, :verifier], Organization.with_role(:user, current_user).first)
         #     return true
         # else
@@ -15,4 +23,5 @@ module ApplicationHelper
         return true
         # end
     end
+    
 end

@@ -22,7 +22,7 @@ class CasesController < ApplicationController
         admin = User.with_role(:admin, @org).first
         if @case.save
             # UserMailer.case_add_email(admin.email, current_user.id, @case.id).deliver_now
-            redirect_to root_path
+            redirect_to cases_path
         else
             render 'new'
         end
@@ -46,11 +46,12 @@ class CasesController < ApplicationController
         @case = Case.find(status_params[:id])
         @case.status = Case.statuses[status_params[:status]]
         @case.save!
+        redirect_to manage_case_path
     end
 
     def destroy
         @case.destroy!
-        redirect_to root_path   #route back
+        redirect_to manage_case_path
     end 
 
     private 
