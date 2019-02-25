@@ -18,7 +18,10 @@
           <td><%=c.status.capitalize%></td>
           <td><%=c.created_at%></td>
           <td><button><%= link_to "Show", case_path(c)%></button> <% if current_user.id == c.user_id %> <button><%= link_to "Edit", edit_case_path(c)%></button> <button><%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button> <% end %>
-              <button><%= link_to "Comment", add_comment_path(c)%></button> 
+              <button><%= link_to "Comment", add_comment_path(c)%></button>
+              <% if is_verifier %> 
+                <button><%= link_to "Opt In", opt_in(c)%></button> 
+              <% end %>
           </td>      
         </tr>
       <% end %>

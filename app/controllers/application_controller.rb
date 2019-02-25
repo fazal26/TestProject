@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
             super_panel_index_path
         elsif is_admin
             admin_panel_index_path
-        elsif is_user
+        elsif is_user || is_verifier
             cases_path
         end
     end

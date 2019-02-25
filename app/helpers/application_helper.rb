@@ -22,5 +22,13 @@ module ApplicationHelper
             false
         end
     end
+
+    def is_verifier
+        if current_user.has_role?(:verifier, Organization.with_role(:verifier, current_user).first)
+            true
+        else
+            false
+        end
+    end
     
 end
