@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_144316) do
+ActiveRecord::Schema.define(version: 2019_02_25_145252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(version: 2019_02_22_144316) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "optins", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "case_id"
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -83,6 +88,11 @@ ActiveRecord::Schema.define(version: 2019_02_22_144316) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "table_optins", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "case_id"
   end
 
   create_table "users", force: :cascade do |t|
