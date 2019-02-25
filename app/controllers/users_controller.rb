@@ -5,8 +5,7 @@ class UsersController < ApplicationController
     def index; end
 
     def edit
-        puts "OOOOOOOOOOOOO\n"*99
-        puts params.inspect
+
     end
 
     def new
@@ -28,14 +27,17 @@ class UsersController < ApplicationController
     end
 
     def update
-        role = role_params[:role].downcase
-        if role == "verifier"
-            @user.remove_role(:user, @org )
-            @user.add_role(:verifier, @org)
-        elsif
-            @user.remove_role(:verifier, @org )        
-            @user.add_role(:user, @org)
-        end
+        puts "OOOOOOOOOOOOO\n"*99
+        puts params.inspect
+        @user.update!(edit_user_params)
+        # role = role_params[:role].downcase
+        # if role == "verifier"
+        #     @user.remove_role(:user, @org )
+        #     @user.add_role(:verifier, @org)
+        # elsif
+        #     @user.remove_role(:verifier, @org )        
+        #     @user.add_role(:user, @org)
+        # end
         @user.save!
     end
 
@@ -50,7 +52,7 @@ class UsersController < ApplicationController
     end
 
     def edit_user_params
-        params.require(:user).permit()
+        params.require(:user).permit(:username, :password, :image)
     end
 
     def role_params

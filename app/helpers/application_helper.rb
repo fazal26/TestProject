@@ -6,6 +6,7 @@ module ApplicationHelper
             return false
         end
     end
+    
     def isUser
         # if current_user.has_roles?([:user, :verifier], Organization.with_role(:user, current_user).first)
         #     return true
