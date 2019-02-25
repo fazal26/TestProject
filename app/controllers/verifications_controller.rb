@@ -76,6 +76,6 @@ class VerificationsController < ApplicationController
     end
 
     def verification_params
-      params.require(:verification).permit(:check1, :check2, :remarks, :case_id, files:[])
+      params.require(:verification).permit(:check1, :check2, :check3, :check4, :check5, :amount, :remarks, :case_id, files:[])
     end
 end

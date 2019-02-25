@@ -23,7 +23,9 @@ class OrganizationsController < ApplicationController
         end
     end
 
-    def show; end
+    def show
+        authorize @org
+    end
 
     def destroy
         User.with_role(:admin, @org).destroy_all

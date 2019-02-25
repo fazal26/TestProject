@@ -13,8 +13,12 @@ class Organization < ApplicationRecord
         # Change Admin Roles
         # generated_password = Devise.friendly_token.first(8)
         admin = User.find(admin_id)
-        generated_password = 777777
-        admin.reset_password(generated_password, generated_password)
+        org = Organization.with_role(:admin,admin)
+        admin.remove_role(:admin, Organization.with_role(:admin,admin))
+        admin.add_role(:user, org)
+        new_admin = User.where({email: email})
+        new_admin.remove_role(:user, org)
+        new_admin.add_role(:admin, org)
         # UserMailer.admin_update_email(email, generated_password).deliver_now     
     end
 end

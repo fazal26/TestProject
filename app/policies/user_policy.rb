@@ -1,15 +1,15 @@
-class OrganizationPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
     
     def index?
-      is_super
+      is_super || is_admin
     end
   
     def show?
-      is_super
+      true
     end
   
     def create?
-      is_super
+      is_super || is_admin
     end
   
     def new?
@@ -17,7 +17,7 @@ class OrganizationPolicy < ApplicationPolicy
     end
   
     def update?
-      is_super
+      true
     end
   
     def edit?
@@ -25,7 +25,7 @@ class OrganizationPolicy < ApplicationPolicy
     end
   
     def destroy?
-      is_super
+      is_super || is_admin
     end
     
     private 
@@ -35,6 +35,10 @@ class OrganizationPolicy < ApplicationPolicy
 
     def is_admin
       user.has_role?(:admin , Organization.with_role(:admin, user).first)
+    end
+    
+    def is_self
+        
     end
 
   

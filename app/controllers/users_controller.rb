@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-    before_action :get_user, only:[:destroy, :show, :update]
+    before_action :get_user, only:[:destroy, :show, :update, :edit]
     before_action :get_organization, only: [:update, :create, ]
 
     def index; end
+
+    def edit
+        puts "OOOOOOOOOOOOO\n"*99
+        puts params.inspect
+    end
 
     def new
      @user = User.new
@@ -17,6 +22,7 @@ class UsersController < ApplicationController
         elsif user_params[:role] == "user"
             @user.add_role :user, @org       
         end
+        # @user.image.attach(io: File.open(Rails.root/'app'/'assets'/'images'/'user.png'), filename: 'asdf')
         @user.save!
         redirect_back(fallback_location: root_path)
     end
@@ -41,6 +47,10 @@ class UsersController < ApplicationController
     private 
     def user_params
         params.require(:user).permit(:email, :username, :role)
+    end
+
+    def edit_user_params
+        params.require(:user).permit()
     end
 
     def role_params

@@ -1,27 +1,21 @@
 class CommentPolicy < ApplicationPolicy
 
-
-    
-      def create?
+    def create?
         !is_admin_or_verifier
-      end
+    end
     
-      def new?
+    def new?
         create?
-      end
+    end
 
-      def destroy?
+    def destroy?
         !is_admin_or_verifier
-      end
-
-      end
+    end
     
-      private 
-      def is_admin_or_verifier
-        puts "OOOOOOOOOOOOOOOOOO\n"*99
-        puts user.has_role?(:super) || user.has_role?(:user, Organization.with_role(:user, current_user))
-      end
-
-
-
+    def comment; end
+    
+    private
+    def is_admin_or_verifier
+        user.has_role?(:super) || user.has_role?(:user, Organization.with_role(:user, current_user))
+    end
 end

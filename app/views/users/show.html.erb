@@ -1,1 +1,8 @@
-<h3> User Profile Page</h3>
+<div style="text-align:center">
+  <button><%= link_to "Edit Profile", edit_user_path(@user)%></button>
+</div>
+<h3>Username: <%= @user.username%></h3>
+<h3>Email : <%= @user.email%></h3>
+<%= image_tag(@user.image)%>
+
+

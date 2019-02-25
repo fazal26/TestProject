@@ -2,17 +2,21 @@
   <%= notice %>
 </p>
 <p>
-  <b>Check1:</b>
-  <%= @verification.check1 %>
-</p>
-<p>
-  <b>Check2:</b>
-  <%= @verification.check2 %>
-</p>
-<p>
   <b>Remarks:</b>
   <%= @verification.remarks %>
 </p>
+<p>
+  <b>Amount:</b>
+  <%= @verification.amount %>
+</p>
+  <p>Attachments:</p>
+  <ol>
+    <% @verification.files.each do |f| %>
+      <li>
+        <%= link_to f.filename, f, download: "" %>
+      </li>
+    <% end %>
+  </ol>
 <div>
   <%= render partial: 'verification_comment' %>
 </div>
