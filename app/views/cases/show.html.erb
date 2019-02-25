@@ -15,6 +15,9 @@
   <%= @case.status  %>
   <h3>Category:</h3>
   <%= @case.category.name %>
+  <h3>Description: </h3>
+  <%= @case.description %>
+  <% if opted(current_user.id, @case.id)%>
   <h3>Full Name:</h3>
   <%= @case.name %>
   <h3>Contact: </h3>
@@ -23,8 +26,6 @@
   <%= @case.address %>
   <h3>CNIC: </h3>
   <%= @case.cnic %>
-  <h3>Description: </h3>
-  <%= @case.description %>
   <h3>Attachments: </h3>
   <% if @case.files.empty? %>
     <p>No Attachments Available.</p>
@@ -50,6 +51,7 @@
   <Button><%= link_to "Open", verification_path(v)%></Button>
   <% end %>
   </div>
+  <% end %>
   <br/>
   <br/>
 </div>

@@ -1,6 +1,8 @@
 <h2 style ="text-align:center">Welcome to <%= @org.title.capitalize%>!</h2>
+<% if !is_user %>
 <div style="text-align:center">
   <button><%= link_to "Add Case", new_case_path%></button>
 </div>
+<% end %>
 <br>
 <%= render 'table'%>

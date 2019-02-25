@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
         elsif is_admin
             admin_panel_index_path
         elsif is_user
-            root_path
+            cases_path
         end
     end
 

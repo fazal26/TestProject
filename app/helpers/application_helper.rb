@@ -16,12 +16,11 @@ module ApplicationHelper
     end
     
     def is_user
-        # if current_user.has_roles?([:user, :verifier], Organization.with_role(:user, current_user).first)
-        #     return true
-        # else
-        #     return false
-        return true
-        # end
+        if current_user.has_role?(:user, Organization.with_role(:user, current_user).first)
+            true
+        else
+            false
+        end
     end
     
 end
