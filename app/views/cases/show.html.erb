@@ -1,57 +1,50 @@
-<h1 style = "text-align:center">Case Details</h1>
+<h1 class = "text-primary text-center">Case Details</h1>
 <div style="text-align:center">
   <% if validateable(current_user.id, @case.id)%> 
-  <button> <%= link_to "Add Verification", add_verification_path%></button>
+    <%= link_to "Add Verification", add_verification_path, class: "btn btn-warning"%>
   <% end %>
 </div>
   <br/>
 
-<div class="well">
-  <h3>Verifier Preference (Hint) </h3>
-  <%= @case.verifierPreference %>
-  <h3>Title:</h3>
-  <%= @case.title  %>
-  <h3>Status</h3>
-  <%= @case.status  %>
-  <h3>Category:</h3>
-  <%= @case.category.name %>
-  <h3>Description: </h3>
-  <%= @case.description %>
+<div class="well titles">
+  <span>Verifier Preference(Hint): </span><%= @case.verifierPreference %><br>
+  <span>Title: </span><%= @case.title  %><br>
+  <span>Status: </span><%= @case.status  %><br>
+  <span>Category: </span><%= @case.category.name %><br>
+  <span>Description: </span><%= @case.description %><br>
   <% if is_opted(current_user.id, @case.id)%>
-  <h3>Full Name:</h3>
-  <%= @case.name %>
-  <h3>Contact: </h3>
-  <%= @case.contact %>
-  <h3>Address: </h3>
-  <%= @case.address %>
-  <h3>CNIC: </h3>
-  <%= @case.cnic %>
-  <h3>Attachments: </h3>
-  <% if @case.files.empty? %>
-    <p>No Attachments Available.</p>
-  <% end %>
-  <ol>
-    <% @case.files.each do |file| %>
-      <li>
-        <%= link_to file.filename, file, download: "" %>
-      </li>
+  <div class = "personalData">
+    <span>Full Name: </span><%= @case.name %><br>
+    <span>Contact: </span><%= @case.contact %><br>
+    <span>Address: </span><%= @case.address %><br>
+    <span>CNIC: </span><%= @case.cnic %><br>
+    <span>Attachments: </span>
+    <% if @case.files.empty? %>
+      <p>No Attachments Available.</p>
     <% end %>
-  </ol>
-  <h3>Verifications:</h3>
-  <div class="well">
+    <ol>
+      <% @case.files.each do |file| %>
+        <li>
+          <%= link_to file.filename, file, download: "" %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+  <span>Verifications:</span>
+  <div class="well verifications">
   <% if @case.verifications.empty? %>
     <p>No Verifications Available.</p>
   <% end %>
   <% @case.verifications.each_with_index do |v,index| %>
   <span><%= index+1 %>-</span>
-  <span>Verifier: <%= v.user.email %></span>
-  <br>
-  <span>Created At: <%= v.created_at.strftime("%Y-%m-%d") %></span>
-  <br>
-  <Button><%= link_to "Open", verification_path(v)%></Button>
+  <span><%= v.user.email %> (<%= v.created_at.strftime("%d-%m-%Y - %M:%H %p") %>)</span>
+  <%= link_to "Open", verification_path(v), class: "btn btn-info"%>
   <% end %>
   </div>
   <% end %>
   <br/>
   <br/>
+</div>
+<div>
+  <%= render 'comment'%>
 </div>

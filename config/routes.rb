@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   resources :users
   resources :optins
 
-  root 'cases#temp'
+  root 'cases#index'
 end

@@ -29,7 +29,10 @@ class CasesController < ApplicationController
         end
     end
     
-    def show; end
+    def show
+        @comments = @case.comments
+        @comment = Comment.new
+    end
 
     def edit; end
 

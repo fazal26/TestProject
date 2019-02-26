@@ -1,5 +1,5 @@
 <div class="well">
-  <h3 style="text-align:center">All Cases</h3>
+  <h2 class = "text-center text-primary">All Cases</h2>
   <table id="caseTable" class="table table-hover">
     <thead>
       <tr>
@@ -22,14 +22,19 @@
                 <%= form_for @opt ,method: :post do |f| %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.hidden_field :case_id, value: c.id %>
-                <%= f.submit "Opt In"%>
+                <%= f.submit "Opt In" , class: "btn btn-primary"%>
                 <% end %>
                 <% elsif is_opted(current_user.id, c.id) %>
-                <span style = "font-size:1.2em;font-weight:bolder">Case Opted </span>
+                <span style = "font-size:1.2em;font-weight:bolder" class = "text-danger">Case Opted </span>
               <% end %>
           </td> 
-          <td>  <button><%= link_to "Show", case_path(c)%></button> <% if current_user.id == c.user_id %> <button><%= link_to "Edit", edit_case_path(c)%></button> <button><%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}%></button> <% end %>
-              <button><%= link_to "Comment", add_comment_path(c)%></button>
+          <td class = "btn-group">
+            <%= link_to "Show", case_path(c), class: "btn btn-info"%>
+            <% if current_user.id == c.user_id %>
+              <%= link_to "Edit", edit_case_path(c), class: "btn btn-success"%>
+              <%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}, class: "btn btn-danger"%>
+            <% end %>
+            <%= link_to "Comment", add_comment_path(c), class: "btn btn-warning"%>
           </td>     
         </tr>
       <% end %>
