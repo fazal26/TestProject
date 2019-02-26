@@ -10,9 +10,9 @@
         <th>Index</th>
         <th>Title</th>    
         <th>Status</th>
-        <th>Submission Date</th>  
+        <th>SubmissionDate</th>  
         <th>Actions</th>   
-        <th>Change Status</th>            
+        <th>Status</th>            
       </tr>
     </thead>
     <tbody>
@@ -21,8 +21,8 @@
           <td><%=i+1%></td>
           <td><%=c.title%></td>
           <td><%=c.status.capitalize%></td>
-          <td><%=c.created_at%></td>
-          <td class = "btn-group">
+          <td><%=c.created_at.to_date%></td>
+          <td class = "btn-group ">
             <%= link_to "Show", case_path(c) ,class: "btn btn-info"%>
             <% if c.proposed? %>
               <%= link_to "Edit", edit_case_path(c), class: "btn btn-success" %>
@@ -33,7 +33,7 @@
           <td>
           <% if c.verifications.length != 0 %>
           <%= form_tag(case_path(c), method: "put") do %>
-            <%= select_tag "status", options_for_select(Case.statuses.map {|k, _| [k.humanize.capitalize, k]}) %> 
+            <%= select_tag "status", options_for_select(Case.statuses.map {|k, _| [k.humanize.capitalize, k]}), class: "input input-sm" %> 
             <%= submit_tag "Update", class: "btn btn-primary"%>
           <% end %>
           <% end %>
