@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :super_panel
   resources :admin_panel
   resources :users
-  resources :home
+  resources :optins
 
   root 'cases#temp'
 end

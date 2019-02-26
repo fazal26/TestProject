@@ -5,6 +5,7 @@ class CasesController < ApplicationController
 
     def index
         @cases = Case.all.order("created_at DESC").where({organization_id: @org.id})
+        @opt = Optin.new
         authorize @cases
     end
 

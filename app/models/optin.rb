@@ -1,0 +1,2 @@
+class Optin < ApplicationRecord
+end
