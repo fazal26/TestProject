@@ -3,7 +3,7 @@
 <% end %>
 <br>
 <div class="well">
-  <h2 style = "text-align:center">All Users</h2>
+  <h2 class = "text-primary text-center">All Users</h2>
     <table id="userTable" class="table table-hover">
       <thead>
         <tr>
@@ -24,11 +24,14 @@
             <td><%= u.email%></td>
             <td><%= u.roles.first.name.capitalize%></td>
             <td><%= u.created_at%></td>
-            <td><button><%= link_to "Show", user_path(u)%></button> <button><%= link_to "Delete", user_path(u), method: :delete, data: { confirm: "You Sure?"}%></button></td>
+            <td  class = "btn-group">
+              <%= link_to "Show", user_path(u), class: "btn btn-info"%>
+              <%= link_to "Delete", user_path(u), method: :delete, data: { confirm: "You Sure?"}, class:"btn btn-danger"%>
+            </td>
             <td>
             <%= form_tag(user_path(u), method: "put") do %>
-            <%= select_tag "role", options_for_select(@options) %> 
-            <%= submit_tag "Update" %>
+              <%= select_tag "role", options_for_select(@options) %> 
+            <%= submit_tag "Update", class: "btn btn-primary" %>
           <% end %>
             </td>
           </tr>

@@ -1,5 +1,5 @@
 <div class="well">
-  <h3 style= "text-align:center">Add User</h3>
+  <h2 class = "text-primary text-center ">Add User</h2>
   <%= simple_form_for @user do |f| %>
   <%= f.input :email, placeholder: "user@organization.com" %>
   <%= f.input :username, placeholder: "Jon Doe" %>
@@ -9,6 +9,9 @@
   <%= label_tag("User") %>
   <%= radio_button_tag 'user[role]',"verifier"%>
   <%= label_tag( "Verifier") %>
-  <%= f.button :submit %>
+  <br>
+  <br>
+
+  <%= f.button :submit , class: "btn-primary" %>
   <% end %>
 </div>

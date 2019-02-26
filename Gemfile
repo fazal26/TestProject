@@ -28,9 +28,6 @@ gem 'jquery-datatables'
 gem 'popper_js'
 gem 'tether-rails'
 
-
-
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
