@@ -1,4 +1,5 @@
-<div id="commentBox" class="well" style="height:250px; overflow-y: scroll">
+<h3 class = "text-center text-primary">Comments</h3>
+<div id="commentBox" class="well commentBox" style="">
   <% @comments.each do |comment|%>
     <%= render 'comments/comment' , comment:comment%>
   <% end %>
