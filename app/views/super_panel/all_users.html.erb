@@ -1,0 +1,31 @@
+<div class="well">
+  <h2 class = "text-primary text-center">All Users</h2>
+    <table id="userTable" class="table table-hover">
+      <thead>
+        <tr>
+          <th> Index</th>              
+          <th> Username</th>    
+          <th> Email</th>
+          <th> Role</th>
+          <th> Joining Date</th>
+          <th> Actions</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each_with_index do |u,i| %>
+          <tr>
+          <td><%= i+1 %></td>
+            <td><%= u.username %></td>
+            <td><%= u.email%></td>
+            <td><%= u.roles.first.name.capitalize%></td>
+            <td><%= u.created_at%></td>
+            <td  class = "btn-group">
+              <%= link_to "Show", user_path(u), class: "btn btn-info"%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+
+

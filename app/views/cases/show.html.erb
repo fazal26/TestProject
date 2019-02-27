@@ -33,7 +33,7 @@
   <span>Verifications:</span>
   <div class="well verifications">
   <% if @case.verifications.empty? %>
-    <p>No Verifications Available.</p>
+    <h5>No Verifications Available!</h5>
   <% end %>
   <% @case.verifications.each_with_index do |v,index| %>
   <span><%= index+1 %>-</span>

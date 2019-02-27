@@ -4,6 +4,6 @@ App.chat = App.cable.subscriptions.create("VerificationChannel", {
   received: function(data) {
     var comments = $('#verificationCommentBox');
     comments.append(data['comment']);
-    // comments.scrollTop(comments[0].scrollHeight);
+    comments.scrollTop(comments[0].scrollHeight);
     }
   });

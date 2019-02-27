@@ -31,7 +31,9 @@
           <td class = "btn-group">
             <%= link_to "Show", case_path(c), class: "btn btn-info"%>
             <% if current_user.id == c.user_id %>
-              <%= link_to "Edit", edit_case_path(c), class: "btn btn-success"%>
+              <% if c.poposed? %>
+                <%= link_to "Edit", edit_case_path(c), class: "btn btn-success"%>
+              <% end %>
               <%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}, class: "btn btn-danger"%>
             <% end %>
           </td>     

@@ -5,6 +5,10 @@ class SuperPanelController < ApplicationController
   def index
     authorize self
   end
+  
+  def all_users
+    @users = Organization.find(params[:organization_id]).users
+  end
 
   private 
   def validate_super

@@ -36,10 +36,6 @@ class CasesController < ApplicationController
 
     def edit; end
 
-    def comment
-        @comments = @case.comments
-        @comment = Comment.new
-    end
 
     def verification
         @verifications = @case.verifications
@@ -47,10 +43,15 @@ class CasesController < ApplicationController
     end
 
     def update
-        @case = Case.find(status_params[:id])
-        @case.status = Case.statuses[status_params[:status]]
-        @case.save!
-        redirect_to manage_case_path
+
+        if status_params[:status].present?
+            @case = Case.find(status_params[:id])
+            @case.status = Case.statuses[status_params[:status]]
+            @case.save!
+        else
+            @case.update!(case_params)
+        end
+        redirect_to root_path
     end
 
     def destroy

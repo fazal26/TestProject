@@ -4,9 +4,7 @@ class UsersController < ApplicationController
 
     def index; end
 
-    def edit
-
-    end
+    def edit; end
 
     def new
      @user = User.new
@@ -21,7 +19,6 @@ class UsersController < ApplicationController
         elsif user_params[:role] == "user"
             @user.add_role :user, @org       
         end
-        # @user.image.attach(io: File.open(Rails.root/'app'/'assets'/'images'/'user.png'), filename: 'asdf')
         @user.save!
         redirect_back(fallback_location: root_path)
     end
@@ -56,7 +53,6 @@ class UsersController < ApplicationController
 
     def role_params
         params.permit(:id, :role)
-
     end
 
     def get_user

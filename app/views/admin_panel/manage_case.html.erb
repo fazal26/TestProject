@@ -10,7 +10,7 @@
         <th>Index</th>
         <th>Title</th>    
         <th>Status</th>
-        <th>SubmissionDate</th>  
+        <th>Submission Date</th>  
         <th>Actions</th>   
         <th>Status</th>            
       </tr>
@@ -24,10 +24,9 @@
           <td><%=c.created_at.to_date%></td>
           <td class = "btn-group ">
             <%= link_to "Show", case_path(c) ,class: "btn btn-info"%>
-            <% if c.proposed? %>
+            <% if c.proposed? && c.user_id == current_user.id%>
               <%= link_to "Edit", edit_case_path(c), class: "btn btn-success" %>
             <%end%>
-            <%= link_to "Comment", add_comment_path(c), class: "btn btn-default"%>
             <%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}, class: "btn btn-danger  " %>
           </td>          
           <td>

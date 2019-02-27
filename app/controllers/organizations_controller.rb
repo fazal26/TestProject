@@ -10,10 +10,8 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        puts "OOOOOOOOOOOOOOO\n"*99
-        puts org_params.inspect
-        # OrganizationCreator.new(org_params).perform
-        # redirect_to organizations_path
+        OrganizationCreator.new(org_params).perform
+        redirect_to organizations_path
     end
 
     def edit; end
