@@ -1,6 +1,3 @@
 <%= image_tag(user_profile(comment.user) , style: "width:3vw; border-radius:50px")%>
-<%= comment.body%> 
-<% if comment.user.id == current_user.id %>
-    <%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} , style: "float:right", class:"glyphicon glyphicon-trash"%>
-<% end %>
+<%= comment.body%><%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} , style: "float:right", class:"glyphicon glyphicon-trash"%>
 <p class = "timeLine"><%= comment.created_at.strftime("%B %e - %I:%M %p")%></p> 

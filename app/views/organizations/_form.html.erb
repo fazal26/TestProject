@@ -1,11 +1,10 @@
 <div class="well">
-  <%= form_for @org do |f| %>
-    <label>Organization Title:</label>
-    <%= f.text_field :title%>
+  <%= simple_form_for @org do |f| %>
+    <%= f.input :title, label: "Title:"%>
     <br>
     <label>Admin Email:</label>
-    <%= text_field_tag 'organization[email]' %>
+    <%= text_field 'organization[email]', class: "form-group" %>
     <br>
-    <%= f.submit "Save" %>
+    <%= f.submit "Save", class: "btn btn-default" %>
   <% end %>
 </div>

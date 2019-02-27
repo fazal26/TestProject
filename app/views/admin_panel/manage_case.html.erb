@@ -34,7 +34,7 @@
           <% if c.verifications.length != 0 %>
           <%= form_tag(case_path(c), method: "put") do %>
             <%= select_tag "status", options_for_select(Case.statuses.map {|k, _| [k.humanize.capitalize, k]}), class: "input input-sm" %> 
-            <%= submit_tag "Update", class: "btn btn-primary"%>
+            <%= submit_tag "Update", data: { confirm: "You Sure?"}, class: "btn btn-primary"%>
           <% end %>
           <% end %>
           </td>

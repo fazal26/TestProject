@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/manage_case', to: "admin_panel#manage_case"
   get '/case/:id/comment', to: "cases#comment", as: "add_comment"
   get '/case/:id/verification', to: "cases#verification", as: "add_verification"
-  devise_for :users, :controllers => { invitations: 'users/invitations' }
+  devise_for :users, controllers: { invitations: 'users/invitations' }
 
   resources :cases
   resources :comments

@@ -1,5 +1,5 @@
 <h3 class = "text-center text-primary">Comments</h3>
-<div id="commentBox" class="well commentBox" style="">
+<div id="commentBox" class="well commentBox">
   <% @comments.each do |comment|%>
     <%= render 'comments/comment' , comment:comment%>
   <% end %>

@@ -74,3 +74,43 @@
     <% end %>
   </div>
    <%# placeholder: "#{current_user.email}:", %>
+
+
+
+   <% if comment.user.id == current_user.id %>
+    <%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} , style: "float:right", class:"glyphicon glyphicon-trash"%>
+<% end %>
+
+
+
+
+<h1 class = "text-center text-primary"><%= @org.title.capitalize %></h1>
+<div class="well titles">
+
+
+  <div class = "row">
+    <div class = "col-sm-4">
+      <p>Admin Email: </p>
+      <p>Total Cases: </p>
+      <p>Pending Cases: </p>
+      <p>Verified Cases: </p>
+      <p>Closed Cases: </p>
+      <p>Total Users: </p>
+    </div>
+    <div class = "col-sm-8">
+      <%= @admin.email%><br>
+      <%= @org.cases.count %><br>
+      <%= @org.cases.where({status: "proposed"}).count %><br>
+      <%= @org.cases.where(status: "verified").count %><br>
+      <%= @org.cases.where(status: "closed").count %><br>
+      <%= @org.users.count %><br>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <%= link_to "Edit", edit_organization_path(@org), class:"btn btn-success" %>
+  <%= link_to "Delete", organization_path(@org), method: :delete, data: { confirm: "You Sure?"}, class: "btn btn-danger" %>
+
+  
+</div>
+<%= render 'cases/table'%>

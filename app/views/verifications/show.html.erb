@@ -1,15 +1,12 @@
 <p id="notice">
   <%= notice %>
 </p>
-<p>
-  <b>Remarks:</b>
-  <%= @verification.remarks %>
-</p>
-<p>
-  <b>Amount:</b>
-  <%= @verification.amount %>
-</p>
-  <p>Attachments:</p>
+<h3 class = "text-center text-primary">Verification Details</h3>
+<div class = "well titles">
+  <span>Proposer: </span><%= User.find(@verification.user_id).username%><br>
+  <span>Remarks: </span><%= @verification.remarks%><br>
+  <span>Proposed Amount: </span><%= @verification.amount%><br>
+  <h3>Attachments:</h3>
   <ol>
     <% @verification.files.each do |f| %>
       <li>
@@ -17,9 +14,6 @@
       </li>
     <% end %>
   </ol>
-<div>
-  <%= render partial: 'verification_comment' %>
-</div>
-<%= link_to 'Edit', edit_verification_path(@verification) %>
 
-<%= link_to 'Back', verifications_path %>
+</div>
+<%= render partial: 'verification_comment' %>

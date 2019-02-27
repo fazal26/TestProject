@@ -1,16 +1,30 @@
-<h1 style = "text-align:center"><%= @org.title %></h1>
-<div class="well">
-  <h3>Admin Email: <%= @admin.email  %></h3>
-  <h3>Total Cases: <%= @org.cases.count %></h3>
-  <h3>Pending Cases: <%= @org.cases.where({status: "proposed"}).count %></h3>
-  <h3>Verified Cases: <%= @org.cases.where(status: "verified").count %></h3>
-  <h3>Closed Cases: <%= @org.cases.where(status: "closed").count %></h3>
-  <h3>Total Users: <%= @org.users.count %></h3>
 
+<h1 class = "text-center text-primary"><%= @org.title.capitalize %></h1>
+<div class="well titles">
+
+
+  <div class = "row">
+    <div class = "col-sm-3">
+      <h3>Admin Email: </h3>
+      <h3>Total Cases: </h3>
+      <h3>Pending Cases: </h3>
+      <h3>Verified Cases: </h3>
+      <h3>Closed Cases: </h3>
+      <h3>Total Users: </h3>
+    </div>
+    <div class = "col-sm-9 titles">
+      <h3><%= @admin.email%></h3>
+      <h3><%= @org.cases.count %></h3>
+      <h3><%= @org.cases.where({status: "proposed"}).count %></h3>
+      <h3><%= @org.cases.where(status: "verified").count %></h3>
+      <h3><%= @org.cases.where(status: "closed").count %></h3>
+      <h3><%= @org.users.count %></h3>
+    </div>
+  </div>
   <br/>
   <br/>
-  <button><%= link_to "Edit", edit_organization_path(@org) %></button>
-  <button><%= link_to "Delete", organization_path(@org), method: :delete, data: { confirm: "You Sure?"} %></button>
+  <%= link_to "Edit", edit_organization_path(@org), class:"btn btn-success" %>
+  <%= link_to "Delete", organization_path(@org), method: :delete, data: { confirm: "You Sure?"}, class: "btn btn-danger" %>
 
   
 </div>

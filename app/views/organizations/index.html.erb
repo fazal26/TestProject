@@ -1,11 +1,11 @@
 
 <div style="text-align:center">
-  <button><%= link_to "Add Organization", new_organization_path%></button>
+  <%= link_to "Add Organization", new_organization_path, class: "btn btn-default"%>
 </div>
 <br>
 
 <div class="well">
-  <h3 style="text-align:center">All Organizations</h3>
+  <h2 class ="text-primary text-center">All Organizations</h2>
   <table id="organizationTable" class="table table-hover">
     <thead>
       <tr>
@@ -27,14 +27,14 @@
           <td><%=o.users.count%></td>   <%# this is to be replaced with cases after association of cases and organizations%>
           <td><%=o.users.count%></td>
           <td><%=o.created_at%></td>
-          <td><button><%= link_to "Show", organization_path(o)%></button> <button><%= link_to "Edit", edit_organization_path(o)%></button> 
-              <button><%= link_to "Delete", organization_path(o), method: :delete, data:{ confirm: "Are you Sure?"}%></button>
-              <% if is_super %>
-                <button><%= link_to "Users", manage_user_path(o)%></button> 
-              <% end %>              
-
+          <td class = "btn-group">
+            <%= link_to "Show", organization_path(o), class: "btn btn-info"%>
+            <%= link_to "Edit", edit_organization_path(o), class: "btn btn-success"%> 
+            <%= link_to "Delete", organization_path(o), method: :delete, data:{ confirm: "Are you Sure?"}, class: "btn btn-danger"%>
+            <% if is_super %>
+              <%= link_to "Users", manage_user_path, class: "btn btn-warning" %>
+            <% end %>              
           </td>          
-
         </tr>
       <% end %>
     </tbody>

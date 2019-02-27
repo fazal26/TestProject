@@ -1,7 +1,9 @@
-<div>
-  <%= form_for @comment, remote: true do |f| %>
-    <%= f.hidden_field :verification_id, value: verification_id %>
-    <%= f.text_field :body, placeholder: "Say something new!", id: "comment_body", style:"width:50vw"%>
-    <%= f.submit "Send"%>
-  <% end %>
-</div>
+<%= form_for @comment, remote: true do |f| %>
+  <%= f.hidden_field :verification_id, value: verification_id %>
+  <%= image_tag(user_profile(current_user) , style: "width:3vw; border-radius:50px")%>
+  <%= f.text_field :body, id: "comment_body", class: "newCommentBody", placeholder:"Comment...!"%>
+  <%= f.submit "Comment" ,style:"display:none"%>
+<% end %>
+<br>
+<br>
+
