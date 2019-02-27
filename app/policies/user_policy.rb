@@ -1,7 +1,7 @@
 class UserPolicy < ApplicationPolicy
     
     def index?
-      is_super || is_admin
+      false
     end
   
     def show?
@@ -17,7 +17,7 @@ class UserPolicy < ApplicationPolicy
     end
   
     def update?
-      true
+      is_self
     end
   
     def edit?
@@ -34,11 +34,11 @@ class UserPolicy < ApplicationPolicy
     end
 
     def is_admin
-      user.has_role?(:admin , Organization.with_role(:admin, user).first)
+      user.has_role?(:admin , user.organizations.first)
     end
     
     def is_self
-        
+      user.id == record.id
     end
 
   

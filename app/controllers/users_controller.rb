@@ -4,13 +4,17 @@ class UsersController < ApplicationController
 
     def index; end
 
-    def edit; end
-
+    def edit
+        authorize @user
+    end
+ 
     def new
      @user = User.new
     end
 
     def create
+        @user = User.new
+        authorize @user
         # generated_password = Devise.friendly_token.first(8)
         @user = User.create!({email: user_params[:email],username: user_params[:username] ,password: '111111'})
         # @user.invite!()
@@ -24,17 +28,22 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user.update!(edit_user_params)
-        # role = role_params[:role].downcase
-        # if role == "verifier"
-        #     @user.remove_role(:user, @org )
-        #     @user.add_role(:verifier, @org)
-        # elsif
-        #     @user.remove_role(:verifier, @org )        
-        #     @user.add_role(:user, @org)
-        # end
-        @user.save!
-        redirect_to user_path(@user)
+        if role_params[:role].present?
+            role = role_params[:role].downcase
+            if role == "verifier"
+                @user.remove_role(:user, @org )
+                @user.add_role(:verifier, @org)
+            elsif
+                @user.remove_role(:verifier, @org )        
+                @user.add_role(:user, @org)
+            end
+            @user.save!
+            redirect_to manage_user_path
+        else
+            @user.update!(edit_user_params)
+            redirect_to user_path(@user)    
+        end
+        
     end
 
     def destroy

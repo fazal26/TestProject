@@ -14,7 +14,7 @@ class AdminPanelControllerPolicy < ApplicationPolicy
 
     private 
     def is_admin
-        user.has_role?(:admin , Organization.with_role(:admin, user).first)
+        user.has_role?(:admin , user.organizations.first)
     end
 
 end

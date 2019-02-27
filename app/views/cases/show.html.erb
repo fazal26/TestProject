@@ -12,7 +12,7 @@
   <span>Status: </span><%= @case.status  %><br>
   <span>Category: </span><%= @case.category.name %><br>
   <span>Description: </span><%= @case.description %><br>
-  <% if is_opted(current_user.id, @case.id)%>
+  <% if is_opted(current_user.id, @case.id) || is_admin%>
   <div class = "personalData">
     <span>Full Name: </span><%= @case.name %><br>
     <span>Contact: </span><%= @case.contact %><br>
@@ -37,8 +37,8 @@
   <% end %>
   <% @case.verifications.each_with_index do |v,index| %>
   <span><%= index+1 %>-</span>
-  <span><%= v.user.email %> (<%= v.created_at.strftime("%d-%m-%Y - %M:%H %p") %>)</span>
-  <%= link_to "Open", verification_path(v), class: "btn btn-info"%>
+  <span><%= v.user.email %> (<%= v.created_at.strftime("%d-%m-%Y - %H:%M %p") %>)</span>
+  <%= link_to "Open", verification_path(v), class: "btn btn-info"%><br>
   <% end %>
   </div>
   <% end %>

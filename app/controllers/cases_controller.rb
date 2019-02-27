@@ -4,7 +4,8 @@ class CasesController < ApplicationController
     before_action :get_categories, only:[:new, :create, :edit]
 
     def index
-        @cases = Case.all.order("created_at DESC").where({organization_id: @org.id})
+        
+        @cases = Case.all.order("created_at DESC").where({organization_id: @org.id}) if @org.present?
         @opt = Optin.new
         authorize @cases
     end
@@ -34,12 +35,15 @@ class CasesController < ApplicationController
         @comment = Comment.new
     end
 
-    def edit; end
+    def edit
+    authorize @case
+    end
 
 
     def verification
-        @verifications = @case.verifications
+        # @verifications = @case.verifications
         @verification  = Verification.new
+        authorize @verification
     end
 
     def update
@@ -58,6 +62,8 @@ class CasesController < ApplicationController
         @case.destroy!
         redirect_to manage_case_path
     end 
+
+    def home; end
 
     private 
     def case_params

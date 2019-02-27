@@ -4,11 +4,7 @@ class OrganizationPolicy < ApplicationPolicy
       is_super
     end
   
-    def show?
-      is_super
-    end
-  
-    def create?
+    def create? 
       is_super
     end
   
@@ -23,6 +19,10 @@ class OrganizationPolicy < ApplicationPolicy
     def edit?
       update?
     end
+
+    def show?
+      is_super
+    end
   
     def destroy?
       is_super
@@ -33,10 +33,5 @@ class OrganizationPolicy < ApplicationPolicy
         user.has_role?(:super)
     end
 
-    def is_admin
-      user.has_role?(:admin , Organization.with_role(:admin, user).first)
-    end
-
-  
   end
   

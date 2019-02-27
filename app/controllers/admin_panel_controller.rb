@@ -13,10 +13,12 @@ class AdminPanelController < ApplicationController
         simple = User.with_role(:user, @org)
         verifiers = User.with_role(:verifier, @org)
         @users = simple + verifiers + admin
+        authorize self
     end
 
     def manage_case
-        @cases = Case.where({organization_id: @org.id})
+        @cases = Case.where({organization_id: @org.id}) if @org.present?
+        authorize self
     end
 
     private 

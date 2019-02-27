@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/all_users', to:"super_panel#all_users"
   get '/case/:id/comment', to: "cases#comment", as: "add_comment"
   get '/case/:id/verification', to: "cases#verification", as: "add_verification"
+  get '/home', to: "cases#home", as:"home"
   devise_for :users, controllers: { invitations: 'users/invitations' }
 
   resources :cases

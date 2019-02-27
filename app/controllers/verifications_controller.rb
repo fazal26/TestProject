@@ -6,16 +6,20 @@ class VerificationsController < ApplicationController
   end
 
   def show
+    authorize @verification
     @comments = @verification.comments
     @comment = Comment.new
-  
+    
   end
 
   def new
     @verification = Verification.new
+    authorize @verification
   end
 
-  def edit; end
+  def edit
+    authorize @verification
+  end
 
   def create
     @case = Case.find(verification_params[:case_id].to_i)
@@ -63,6 +67,7 @@ class VerificationsController < ApplicationController
   end
 
   def destroy
+    authorize @verification
     @verification.destroy
     respond_to do |format|
       format.html { redirect_to verifications_url, notice: 'Verification was successfully destroyed.' }

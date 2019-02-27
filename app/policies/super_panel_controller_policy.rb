@@ -8,7 +8,6 @@ class SuperPanelControllerPolicy < ApplicationPolicy
         is_super
     end
 
-
     private 
     def is_super
         user.has_role?(:super)

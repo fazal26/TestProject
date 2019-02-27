@@ -1,7 +1,7 @@
 class CommentPolicy < ApplicationPolicy
 
     def create?
-        !is_admin_or_verifier
+        !is_super
     end
     
     def new?
@@ -9,14 +9,15 @@ class CommentPolicy < ApplicationPolicy
     end
 
     def destroy?
-        !is_admin_or_verifier
+        is_self_comment
     end
     
-    def comment; end
-    
     private
-    def is_admin_or_verifier
+    def is_super
         user.has_role?(:super) 
-        # || user.has_role?(:user, Organization.with_role(:user, user))
+    end
+
+    def is_self_comment
+        user.id == record.user_id
     end
 end

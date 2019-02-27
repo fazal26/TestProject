@@ -1,48 +1,49 @@
 class CasePolicy < ApplicationPolicy
 
-    def index?
-        !is_super
-    end
+  def index?
+    true
+  end
     
-      def show?
-        false
-      end
+  def new?
+    create?
+  end
     
-      def create?
-        !is_super
-      end
-    
-      def new?
-        create?
-      end
-    
-      def update?
-        !is_super
-      end
-    
-      def edit?
-        update?
-      end
-    
-      def destroy?
-        !is_super
-      end
-      
-      def comment?
-        !is_super
-        
-      end
+  def create?
+    is_user
+  end
+  
+  def show?
+    true
+  end
+  
+  def edit?
+    update?
+  end
 
-      def verification?
-        !is_super
-
-      end
+  def update?
+    is_own_case
+  end
     
-      private 
-      def is_super
-        user.has_role?(:super)
-      end
+  def destroy?
+    is_own_case || is_admin
+  end
+     
+   
+  private 
+  def is_user
+    user.has_role?(:user, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
+  end
 
+  def is_user
+    user.has_role?(:admin, user.organizations.first)
+  end
 
+  def is_verifier
+    user.has_role?(:admin, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
+  end
+
+  def is_own_case
+    user.id == record.user_id
+  end
 
 end
