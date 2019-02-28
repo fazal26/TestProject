@@ -18,7 +18,7 @@
           <td><%=c.title%></td>
           <td><%=c.status.capitalize%></td>
           <td><%=c.created_at%></td>
-          <td><% if is_verifier && !is_opted(current_user.id, c.id)%> 
+          <td><% if is_verifier && !is_opted(current_user.id, c.id) && c.approved?%> 
                 <%= form_for @opt ,method: :post do |f| %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.hidden_field :case_id, value: c.id %>

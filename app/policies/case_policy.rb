@@ -1,7 +1,7 @@
 class CasePolicy < ApplicationPolicy
 
   def index?
-    true
+    is_user
   end
     
   def new?
@@ -9,7 +9,7 @@ class CasePolicy < ApplicationPolicy
   end
     
   def create?
-    is_user
+    is_verifier
   end
   
   def show?
@@ -34,7 +34,7 @@ class CasePolicy < ApplicationPolicy
     user.has_role?(:user, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
   end
 
-  def is_user
+  def is_admin
     user.has_role?(:admin, user.organizations.first)
   end
 

@@ -1,7 +1,7 @@
 <div class="well">
   <%= simple_form_for @case, html: { multipart: true } do |f| %>
     <label>Category: </label>
-    <%= f.select :category_id, @categories, prompt: "Select category", class: "form-control" %>
+    <%= f.select :category_id, options_for_select(@categories), class: "input input-sm", prompt: "Select category"%>
     <%= f.input :verifierPreference, label: "Verifier Preference" %>
     <%= f.input :name, label: "Person Name" %>
     <%= f.input :contact, label: "Contact" %>

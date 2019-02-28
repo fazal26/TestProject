@@ -9,7 +9,7 @@
 <div class="well titles">
   <span>Verifier Preference(Hint): </span><%= @case.verifierPreference %><br>
   <span>Title: </span><%= @case.title  %><br>
-  <span>Status: </span><%= @case.status  %><br>
+  <span>Status: </span><%= @case.status.capitalize  %><br>
   <span>Category: </span><%= @case.category.name %><br>
   <span>Description: </span><%= @case.description %><br>
   <% if is_opted(current_user.id, @case.id) || is_admin%>

@@ -4,7 +4,7 @@ class VerificationPolicy < ApplicationPolicy
     end
 
     def show?
-        is_self_verification
+        is_self_verification || is_verifier
     end
 
     def new?
@@ -33,7 +33,6 @@ class VerificationPolicy < ApplicationPolicy
 
     private
     def is_verifier
-        puts "XXXXXXXXXXXXXXXXXXXXXXXXXXX\n"*99
         user.has_role?(:admin, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
     end
 

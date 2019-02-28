@@ -4,10 +4,9 @@ class CasesController < ApplicationController
     before_action :get_categories, only:[:new, :create, :edit]
 
     def index
-        
         @cases = Case.all.order("created_at DESC").where({organization_id: @org.id}) if @org.present?
         @opt = Optin.new
-        authorize @cases
+        authorize current_user
     end
 
     def new

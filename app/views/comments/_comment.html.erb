@@ -1,8 +1,11 @@
 <%= image_tag(user_profile(comment.user) , style: "width:3vw; border-radius:50px")%>
 <%= comment.body%>
-<% if comment.parent_id.nil? %>
-    <%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} , style: "float:right", class:"glyphicon glyphicon-trash"%>
-    <span style = "float:right" class = "glyphicon glyphicon-share-alt" onclick = "reply(<%= comment.id %>)"></span>
+<% if comment.parent_id.nil?%>
+    <div class = "actions">
+        <span class = "glyphicon glyphicon-share-alt" onclick = "reply(<%= comment.id %>)"></span>
+        <%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} ,  class:"glyphicon glyphicon-trash"%>
+
+    </div>
 <% end %>
 <p class = "timeLine"><%= comment.created_at.strftime("%B %e - %I:%M %p")%></p> 
 <% unless comment.replies.empty?  %>

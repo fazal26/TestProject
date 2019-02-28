@@ -1,8 +1,8 @@
 .timeLine{
     font-size: 0.7em;
 }
-.commentBox{
-    background: #ffc96d !important;
+.actions{
+    float: right;
 }
 .newCommentBody{
     border-radius: 5px;
@@ -11,8 +11,9 @@
 }
 
 .reply{
-    background: #f9b05c;
+    background: #b4b6b8;
     margin-left: 8vw;
     border-radius: 2%;
     padding: 1vw;
+    line-height: 0.1vw;
 }
