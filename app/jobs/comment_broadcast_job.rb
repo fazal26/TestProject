@@ -3,7 +3,8 @@ class CommentBroadcastJob < ApplicationJob
 
   def perform(comment)
     ActionCable.server.broadcast "chat",{
-      comment: render_comment(comment)
+      comment: render_comment(comment),
+      parent_id: comment.parent_id || nil
     }
   end
 
@@ -12,7 +13,8 @@ class CommentBroadcastJob < ApplicationJob
     CommentsController.render(
       partial: 'comments/comment',
       locals: {
-        comment: c
+        comment: c,
+        parent_id: c.parent_id
       }
     )
   

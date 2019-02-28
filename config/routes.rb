@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   resources :verifications
-  get '/manage_user', to: "admin_panel#manage_user"
-  get '/manage_case', to: "admin_panel#manage_case"
-  get '/all_users', to:"super_panel#all_users"
-  get '/case/:id/comment', to: "cases#comment", as: "add_comment"
-  get '/case/:id/verification', to: "cases#verification", as: "add_verification"
-  get '/home', to: "cases#home", as:"home"
-  devise_for :users, controllers: { invitations: 'users/invitations' }
+  get "/manage_user", to: "admin_panel#manage_user"
+  get "/manage_case", to: "admin_panel#manage_case"
+  get "/all_users", to:"super_panel#all_users"
+  get "/case/:id/comment", to: "cases#comment", as: "add_comment"
+  get "/case/:id/verification", to: "cases#verification", as: "add_verification"
+  get "/home", to: "cases#home", as:"home"
+  get "/comment/:id/reply", to: "comment#reply", as: "reply"
+  devise_for :users, controllers: { invitations: "users/invitations" }
 
   resources :cases
   resources :comments
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
   resources :users
   resources :optins
 
-  root 'cases#index'
+  root "cases#index"
 end

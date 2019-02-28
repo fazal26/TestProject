@@ -31,7 +31,7 @@ class CasesController < ApplicationController
     end
     
     def show
-        @comments = @case.comments
+        @comments = @case.comments.where({parent_id: nil})
         @comment = Comment.new
     end
 
