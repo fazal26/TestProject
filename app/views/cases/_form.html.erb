@@ -1,13 +1,13 @@
 <div class="well">
   <%= simple_form_for @case, html: { multipart: true } do |f| %>
     <label>Category: </label>
-    <%= f.select :category_id, options_for_select(@categories), class: "input input-sm", prompt: "Select category"%>
-    <%= f.input :verifierPreference, label: "Verifier Preference" %>
-    <%= f.input :name, label: "Person Name" %>
-    <%= f.input :contact, label: "Contact" %>
-    <%= f.input :address, label: "Address" %>
-    <%= f.input :cnic, label: "CNIC" %>
-    <%= f.input :description, label: "Case Details" %>
+    <%= f.select :category_id, options_for_select(@categories), { class: "input input-sm", required: true, prompt: "Select category"}%>
+    <%= f.input :verifierPreference, label: "Verifier Preference" , required: true%>
+    <%= f.input :name, label: "Person Name" , required: true%>
+    <%= f.input :contact, label: "Contact" , required: true%>
+    <%= f.input :address, label: "Address", required: true %>
+    <%= f.input :cnic, label: "CNIC" , required: true%>
+    <%= f.input :description, label: "Case Details" , required: true%>
     <%= f.file_field :files, multiple: true, label: "Attachments", class: "btn-default"  %>
     <br/>
     <%= f.button :submit , class: "btn-primary" %>

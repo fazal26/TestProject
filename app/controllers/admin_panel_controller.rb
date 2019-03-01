@@ -17,6 +17,7 @@ class AdminPanelController < ApplicationController
     end
 
     def manage_case
+        @opt = Optin.new
         @cases = Case.where({organization_id: @org.id}) if @org.present?
         authorize self
     end

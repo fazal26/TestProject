@@ -18,37 +18,37 @@
       <tbody>
         <tr>
           <td><span>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words.</span></td>
-          <td><%= f.check_box :check1, class:"input field" %></td>
+          <td><%= f.check_box :check1, class:"input field", required: true %></td>
         </tr>
         <tr>
           <td><span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</span></td>
-          <td><%= f.check_box :check2, class:"input" %></td>
+          <td><%= f.check_box :check2, class:"input" , required: true%></td>
         </tr>
         <tr>
           <td><span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</span></td>
-          <td><%= f.check_box :check3, class:"input" %></td>
+          <td><%= f.check_box :check3, class:"input", required: true %></td>
         </tr>
         <tr>
           <td><span>If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated.</span></td>
-          <td><%= f.check_box :check4, class:"input" %></td>
+          <td><%= f.check_box :check4, class:"input", required: true %></td>
         </tr>
         <tr>
           <td><span>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.</span></td>
-          <td><%= f.check_box :check5, class:"input" %></td>
+          <td><%= f.check_box :check5, class:"input", required: true %></td>
         </tr>
       </tbody>
     </table>
 
     <div class="field">
-    <%= f.input :amount, label: "Amount:" %>
+    <%= f.input :amount, label: "Amount:", required: true %>
   </div>
   <div class="field">
-    <%= f.input :remarks, label: "Remarks:", :as => :text, :input_html => { :rows => 7 , :style => 'width: 100%'}%>
+    <%= f.input :remarks, label: "Remarks:", as: :text, input_html: { rows:7 , style: 'width: 100%'}, required: true%>
 
   </div>
   <div class="field">
     <%= f.label :Attachments %>
-    <%= f.file_field :files, multiple: true%>
+    <%= f.file_field :files, multiple: true , required: true%>
   </div>
   <div class="field">
     <%= f.hidden_field :case_id, value: case_id  %>

@@ -11,6 +11,7 @@
         <th>Title</th>    
         <th>Status</th>
         <th>Submission Date</th>  
+        <th>Verification</th>
         <th>Actions</th>   
         <th>Status</th>            
       </tr>
@@ -22,15 +23,25 @@
           <td><%=c.title%></td>
           <td><%=c.status.capitalize%></td>
           <td><%=c.created_at.to_date%></td>
+          <td><% if c.user_id != current_user.id%> 
+                <%= form_for @opt ,method: :post do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :case_id, value: c.id %>
+                <%= f.submit "Opt In" , class: "btn btn-primary"%>
+                <% end %>
+                <% elsif is_opted(current_user.id, c.id) %>
+                <span style = "font-size:1.2em;font-weight:bolder" class = "text-danger">Case Opted </span>
+              <% end %>
+          </td>
           <td class = "btn-group ">
             <%= link_to "Show", case_path(c) ,class: "btn btn-info"%>
             <% if c.proposed? && c.user_id == current_user.id%>
               <%= link_to "Edit", edit_case_path(c), class: "btn btn-success" %>
             <%end%>
             <%= link_to "Delete", case_path(c), method: :delete, data: { confirm: "You Sure?"}, class: "btn btn-danger  " %>
-          </td>          
+          </td> 
+
           <td>
-          
           <%= form_tag(case_path(c), method: "put") do %>
             <%= select_tag "status", options_for_select(Case.statuses.map {|k, _| [k.humanize.capitalize, k]}), class: "input input-sm" %> 
             <%= submit_tag "Update", data: { confirm: "You Sure?"}, class: "btn btn-primary"%>

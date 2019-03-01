@@ -1,7 +1,7 @@
 <h1 class = "text-primary text-center">Case Details</h1>
 <div style="text-align:center">
   <% if validateable(current_user.id, @case.id)%> 
-    <%= link_to "Add Verification", add_verification_path, class: "btn btn-warning"%>
+    <%= link_to "Add Verification", add_verification_path(case_id: @case.id), class: "btn btn-warning"%>
   <% end %>
 </div>
   <br/>

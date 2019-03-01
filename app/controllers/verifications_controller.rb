@@ -13,7 +13,7 @@ class VerificationsController < ApplicationController
   end
 
   def new
-    @verification = Verification.new
+    @verification = Verification.new(params[:case_id])
     authorize @verification
   end
 

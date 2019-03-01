@@ -33,10 +33,13 @@ class VerificationPolicy < ApplicationPolicy
 
     private
     def is_verifier
-        user.has_role?(:admin, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
+        (user.has_role?(:admin, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)) && is_self_case
     end
 
     def is_self_verification
         user.id == record.user_id
+    end
+    def is_self_case
+        Case.find(record.case_id).user.id != user.id
     end
 end
