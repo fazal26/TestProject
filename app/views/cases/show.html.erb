@@ -7,6 +7,9 @@
   <br/>
 
 <div class="well titles">
+  <% if case_closed(@case) %>
+    <span>Donation Amount: </span><%= @case.donation_amount %><br>
+  <% end %>
   <span>Verifier Preference(Hint): </span><%= @case.verifierPreference %><br>
   <span>Title: </span><%= @case.title  %><br>
   <span>Status: </span><%= @case.status.capitalize  %><br>
@@ -43,7 +46,15 @@
   </div>
   <% end %>
   <br/>
-  <br/>
+  <% if @case.verified? && is_admin%>
+    <div class = "closeCase">
+      <h3 class = "text-primary text-center">Close Case</h3>
+      <%= simple_form_for @case do |f| %>
+        <%= f.input :donation_amount, label: "Donation Amount:" , required: true%>
+        <%= f.submit "Save" , class: "btn btn-primary", data: { confirm: "You Sure?"} %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <div>
   <%= render 'comment'%>

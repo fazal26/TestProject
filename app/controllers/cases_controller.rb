@@ -51,6 +51,10 @@ class CasesController < ApplicationController
             @case.status = Case.statuses[status_params[:status]]
             authorize @case 
             @case.save!
+        elsif   donation_amount_params.present?
+            @case.status = Case.statuses['closed']
+            @case.donation_amount = donation_amount_params[:donation_amount]
+            @case.save!()
         else
             instances =  Case.where(category_id: params[:case][:category_id]).count + 1
             @case.title = Category.find(params[:case][:category_id]).name + "-" + instances.to_s
@@ -85,6 +89,10 @@ class CasesController < ApplicationController
 
     def get_categories
         @categories = Category.pluck(:name, :id)
+    end
+
+    def donation_amount_params
+        params.require(:case).permit(:donation_amount)
     end
 
 end

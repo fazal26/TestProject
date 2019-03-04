@@ -14,4 +14,8 @@ module CasesHelper
             false
         end
     end
+
+    def case_closed(c)
+        is_admin && c.closed?
+    end
 end
