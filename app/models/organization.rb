@@ -16,7 +16,7 @@ class Organization < ApplicationRecord
         new_admin = User.where({email: email})
         if new_admin.empty?
             new_admin = User.create({email:email, password: '111111'})
-            # new_admin.invite!()
+            new_admin.invite!()
         else
             new_admin = new_admin.first
             new_admin.remove_role(:user, org)
@@ -24,7 +24,7 @@ class Organization < ApplicationRecord
         new_admin.add_role(:admin, org)
         admin.save!
         new_admin.save!
-        UserMailer.admin_demoted_update_email(admin.email).deliver_now
-        UserMailer.admin_update_email(email).deliver_now     
+        UserMailer.admin_demoted_update_email(admin.email).deliver_later
+        UserMailer.admin_update_email(email).deliver_later
     end
 end

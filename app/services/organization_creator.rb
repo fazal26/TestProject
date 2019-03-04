@@ -8,7 +8,7 @@ class OrganizationCreator
         ActiveRecord::Base.transaction do
             org = Organization.create!(title: @params[:title])
             user = User.create!({email: @params[:email], password: @params[:password]})
-            # user.invite!()
+            user.invite!()
             user.add_role :admin, org
             user.save!
 

@@ -34,7 +34,7 @@
             <% if u.id != current_user.id %>
 
               <%= form_tag(user_path(u), method: "put") do %>
-                <%= select_tag "role", options_for_select(@options), class: "input input-sm" %> 
+                <%= select_tag "role", options_for_select(@options,u.roles.first.name), class: "input input-sm" %> 
               <%= submit_tag "Update", class: "btn btn-primary" %>
             <% end %>
           <% end %>

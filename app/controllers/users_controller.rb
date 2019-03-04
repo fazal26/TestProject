@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         authorize @user
         # generated_password = Devise.friendly_token.first(8)
         @user = User.create!({email: user_params[:email],username: user_params[:username] ,password: '111111'})
-        # @user.invite!()
+        @user.invite!()
         if user_params[:role] == "verifier"
             @user.add_role :verifier, @org
         elsif user_params[:role] == "user"

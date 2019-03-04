@@ -33,7 +33,7 @@ class VerificationPolicy < ApplicationPolicy
 
     private
     def is_verifier
-        (user.has_role?(:admin, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)) && is_self_case
+        user.has_role?(:admin, user.organizations.first) || (user.has_role?(:verifier, user.organizations.first) && is_self_case)
     end
 
     def is_self_verification

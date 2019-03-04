@@ -32,11 +32,18 @@ class UserMailer < ApplicationMailer
         mail(to: email, subject: 'Comment Notification')
     end
 
-    def verification_notification_email(email, verifier_id, case_id)
+    def verification_notification_email(email, verifier_id, case_id, verification_id)
         @verifier = User.find(verifier_id)
         @case = Case.find(case_id)
-        @url  = 'http://localhost:3000/'
+        @url  = "http://localhost:3000/verifications/#{verification_id}"
         mail(to: email, subject: 'Verification Notice')
+    end
+
+    def verification_comment_notification_email(email, verifier_id, case_id, verification_id)
+        @verifier = User.find(verifier_id)
+        @case = Case.find(case_id)
+        @url  = "http://localhost:3000/verifications/#{verification_id}"
+        mail(to: email, subject: 'Verification Comment Notice')
     end
 
     def accept_invitation
