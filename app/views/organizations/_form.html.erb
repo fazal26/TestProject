@@ -3,7 +3,7 @@
     <%= f.input :title, label: "Title:"%>
     <br>
     <label>Admin Email:</label>
-    <%= text_field 'organization[email]', class: "form-group" %>
+    <%= text_field_tag 'organization[email]' %>
     <br>
     <%= f.submit "Save", class: "btn btn-default" %>
   <% end %>

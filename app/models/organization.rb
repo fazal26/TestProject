@@ -10,7 +10,6 @@ class Organization < ApplicationRecord
 
     def update_admin(admin_id, email, org)
         
-        # generated_password = Devise.friendly_token.first(8)
         admin = User.find(admin_id)
         admin.remove_role(:admin, org)
         admin.add_role(:user, org)
@@ -25,6 +24,7 @@ class Organization < ApplicationRecord
         new_admin.add_role(:admin, org)
         admin.save!
         new_admin.save!
-        # UserMailer.admin_update_email(email, generated_password).deliver_now     
+        UserMailer.admin_demoted_update_email(admin.email).deliver_now
+        UserMailer.admin_update_email(email).deliver_now     
     end
 end

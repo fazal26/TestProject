@@ -26,12 +26,17 @@
             <td><%= u.created_at%></td>
             <td  class = "btn-group">
               <%= link_to "Show", user_path(u), class: "btn btn-info"%>
-              <%= link_to "Delete", user_path(u), method: :delete, data: { confirm: "You Sure?"}, class:"btn btn-danger"%>
+              <% if u.id != current_user.id %>
+                <%= link_to "Delete", user_path(u), method: :delete, data: { confirm: "You Sure?"}, class:"btn btn-danger"%>
+              <% end %>
             </td>
             <td>
-            <%= form_tag(user_path(u), method: "put") do %>
-              <%= select_tag "role", options_for_select(@options), class: "input input-sm" %> 
-            <%= submit_tag "Update", class: "btn btn-primary" %>
+            <% if u.id != current_user.id %>
+
+              <%= form_tag(user_path(u), method: "put") do %>
+                <%= select_tag "role", options_for_select(@options), class: "input input-sm" %> 
+              <%= submit_tag "Update", class: "btn btn-primary" %>
+            <% end %>
           <% end %>
             </td>
           </tr>

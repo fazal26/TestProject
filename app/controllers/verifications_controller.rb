@@ -23,6 +23,7 @@ class VerificationsController < ApplicationController
 
   def create
     @case = Case.find(verification_params[:case_id].to_i)
+    authorize @case
     @verification = @case.verifications.create(verification_params)
     @verification.user_id = current_user.id
     @verification.save!

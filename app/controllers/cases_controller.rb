@@ -6,7 +6,6 @@ class CasesController < ApplicationController
     def index
         @cases = Case.all.order("created_at DESC").where({organization_id: @org.id}) if @org.present?
         @opt = Optin.new
-        authorize current_user
     end
 
     def new
@@ -27,6 +26,7 @@ class CasesController < ApplicationController
         else
             render 'new'
         end
+
     end
     
     def show
@@ -49,8 +49,11 @@ class CasesController < ApplicationController
         if status_params[:status].present?
             @case = Case.find(status_params[:id])
             @case.status = Case.statuses[status_params[:status]]
+            authorize @case 
             @case.save!
         else
+            instances =  Case.where(category_id: params[:case][:category_id]).count + 1
+            @case.title = Category.find(params[:case][:category_id]).name + "-" + instances.to_s
             @case.update!(case_params)
         end
         redirect_to root_path

@@ -11,6 +11,12 @@ class UserMailer < ApplicationMailer
         @url  = 'http://localhost:3000/'
         mail(to: email, subject: 'Admin Update')
     end
+    
+    def admin_demoted_update_email(email)
+        @email = email
+        @url  = 'http://localhost:3000/'
+        mail(to: email, subject: 'Admin Update')
+    end
 
     def case_add_email(email, proposer_id, case_id)
         @proposer = User.find(proposer_id)

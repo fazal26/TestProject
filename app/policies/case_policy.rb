@@ -1,15 +1,15 @@
 class CasePolicy < ApplicationPolicy
 
   def index?
-    is_user
+    is_simple_user
   end
     
   def new?
-    create?
+    is_verifier_user
   end
     
   def create?
-    is_verifier
+    is_verifier_user
   end
   
   def show?
@@ -25,21 +25,26 @@ class CasePolicy < ApplicationPolicy
   end
     
   def destroy?
-    is_own_case || is_admin
+    is_own_case || is_admin_user
+  end
+
+  def home
+    true
   end
      
    
   private 
-  def is_user
+  def is_simple_user
+    
     user.has_role?(:user, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
   end
 
-  def is_admin
+  def is_admin_user
     user.has_role?(:admin, user.organizations.first)
   end
 
-  def is_verifier
-    user.has_role?(:admin, user.organizations.first) || user.has_role?(:verifier, user.organizations.first)
+  def is_verifier_user
+    is_admin_user || user.has_role?(:verifier, user.organizations.first)
   end
 
   def is_own_case
