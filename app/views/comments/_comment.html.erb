@@ -3,8 +3,9 @@
 <% if comment.parent_id.nil?%>
     <div class = "actions">
         <span class = "glyphicon glyphicon-share-alt" onclick = "reply(<%= comment.id %>)"></span>
-        <%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} ,  class:"glyphicon glyphicon-trash"%>
-
+        <% if c_user.id == comment.user_id%>
+            <%= link_to " ", comment_path(comment), method: :delete, data:{confirm: "Are you sure!"} ,  class:"glyphicon glyphicon-trash"%>
+        <% end %>
     </div>
 <% end %>
 <p class = "timeLine"><%= comment.created_at.strftime("%B %e - %I:%M %p")%></p> 
