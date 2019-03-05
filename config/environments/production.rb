@@ -33,13 +33,6 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
   config.assets.debug = true
   config.assets.quiet = true
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
-
-  # Use an evented file watcher to asynchronously detect changes in source code,
-  # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
   config.assets.compile = false
 
   # Mount Action Cable outside main process or domain
