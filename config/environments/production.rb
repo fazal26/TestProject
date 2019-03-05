@@ -33,7 +33,7 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
   config.assets.debug = true
   config.assets.quiet = true
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
