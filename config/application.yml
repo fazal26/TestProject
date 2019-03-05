@@ -11,6 +11,6 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 
-# SENDMAIL_USERNAME: meetfazalkarim@gmail.com
-# SENDMAIL_PASSWORD: bsef13m026
+# SENDMAIL_USERNAME: ENV["DEFAULT_EMAIL"]
+# SENDMAIL_PASSWORD: ENV["DEFAULT_PASSWORD"]
 # MAIL_HOST: localhost:3000
