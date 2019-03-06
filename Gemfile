@@ -19,14 +19,12 @@ gem "haml-rails"
 gem 'pg'
 gem "pundit"
 gem 'rolify'
-gem "json"
-gem 'awesome_print'
 gem 'devise_invitable'
 gem 'ajax-datatables-rails'
 gem 'jquery-rails'
 gem 'jquery-datatables'
-gem 'popper_js'
 gem 'tether-rails'
+gem "json"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
