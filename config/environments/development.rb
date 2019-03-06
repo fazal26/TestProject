@@ -25,8 +25,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    user_name:            ENV["DEFAULT_EMAIL"],
-    password:             ENV["DEFAULT_PASSWORD"],
+    user_name:            'meetfazalkarim@gmail.com',
+    password:             'bsef13m026',
     enable_starttls_auto: true
   }
   config.active_support.deprecation = :log

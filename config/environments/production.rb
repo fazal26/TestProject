@@ -34,6 +34,7 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.quiet = true
   config.assets.compile = true
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
