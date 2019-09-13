@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.7'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem "haml-rails"
 gem 'pg'
