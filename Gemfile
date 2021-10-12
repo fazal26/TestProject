@@ -5,7 +5,7 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form', '~> 4.1'
 gem 'uglifier', '>= 1.3.0'
